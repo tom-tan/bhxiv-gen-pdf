@@ -1,0 +1,51 @@
+#! /usr/bin/env ruby
+
+require 'time'
+
+dir=ARGV.shift
+dir="." if not dir
+print "Scanning directory \"#{dir}\" for paper source\n"
+
+papermd = dir + "/" + "paper.md"
+raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
+
+paperbib = dir + "/" + "paper.bib"
+raise "Can not find bibtex file #{paperbib}" if not File.exist?(paperbib)
+
+rootdir=(File.dirname(File.dirname(__FILE__)))
+
+JOURNAL='biohackrxiv'
+JOURNAL_NAME='BioHackrXiv.org'
+CSL=""
+
+time = Time.new
+date = time.strftime("%d %b %Y")
+
+#      --pdf-engine=xelatex
+#      --csl=#{CSL} \
+#      --template #{TEX}"
+
+cmd = <<COMMAND
+      -V archive_doi='PENDING'
+      -V paper_url='PENDING'
+      -V journal_name='#{JOURNAL_NAME}'
+      -V review_issue_url='XXXX'
+      -V graphics='true'
+      -V issue='1'
+      -V volume='1'
+      -V page='1'
+      -V logo_path='resources/#{JOURNAL}/logo.png'
+      -V year='#{time.year}'
+      -V submitted='#{date}'
+      -V editor_name='Toshiaki Katayama'
+      -V editor_url='https://biohackrxiv.org/'
+      -o paper.pdf -V geometry:margin=1in
+      --filter pandoc-citeproc #{papermd}
+      --from markdown+autolink_bare_uris
+COMMAND
+
+print cmd
+cmd2 = 'pandoc '+cmd.split(/\s*\n\s*/).join(" ")
+p cmd2
+
+print `#{cmd2}`
