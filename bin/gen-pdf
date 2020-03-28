@@ -12,18 +12,19 @@ raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
 paperbib = dir + "/" + "paper.bib"
 raise "Can not find bibtex file #{paperbib}" if not File.exist?(paperbib)
 
-rootdir=(File.dirname(File.dirname(__FILE__)))
+rootdir=File.expand_path(File.dirname(File.dirname(__FILE__)))
+resources=rootdir + "/resources/biohackrxiv"
 
 JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'
-CSL=""
+TEX=resources + "/latex.template"
+CSL=resources + "/apa.csl"
+JOURNAL_LOGO=resources + "/logo.png"
 
 time = Time.new
 date = time.strftime("%d %b %Y")
 
 #      --pdf-engine=xelatex
-#      --csl=#{CSL} \
-#      --template #{TEX}"
 
 cmd = <<COMMAND
       -V archive_doi='PENDING'
@@ -34,18 +35,22 @@ cmd = <<COMMAND
       -V issue='1'
       -V volume='1'
       -V page='1'
-      -V logo_path='resources/#{JOURNAL}/logo.png'
+      -V logo_path='#{JOURNAL_LOGO}'
       -V year='#{time.year}'
       -V submitted='#{date}'
       -V editor_name='Toshiaki Katayama'
       -V editor_url='https://biohackrxiv.org/'
       -o paper.pdf -V geometry:margin=1in
-      --filter pandoc-citeproc #{papermd}
+      --filter pandoc-citeproc paper.md
       --from markdown+autolink_bare_uris
+      --template '#{TEX}'
+      --csl=#{CSL}
 COMMAND
 
 print cmd
 cmd2 = 'pandoc '+cmd.split(/\s*\n\s*/).join(" ")
 p cmd2
 
-print `#{cmd2}`
+Dir.chdir(dir) do
+  print `#{cmd2}`
+end
