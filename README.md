@@ -1,16 +1,16 @@
-* Generate PDF for BioHackrXiv.org
+# Generate PDF for BioHackrXiv.org
 
 We use pandoc with LaTeX templates to generate the PDF from markdown
 that can be submitted to https://biohackrxiv.org/. Note we also have
 an online tool that can do same from
 http://biohackrxiv.genenetwork.org/.
 
-* Install
+# Install
 
 Clone this git repository and install ruby and pandoc with
 pandoc-citeproc
 
-* Run
+# Run
 
 Generate the PDF with
 
