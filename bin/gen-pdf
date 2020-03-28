@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
 
+require 'fileutils'
 require 'time'
 
 dir=ARGV.shift
@@ -54,3 +55,5 @@ p cmd2
 Dir.chdir(dir) do
   print `#{cmd2}`
 end
+FileUtils.move(dir+"/paper.pdf",".")
+print "Generated paper.pdf!\n"
