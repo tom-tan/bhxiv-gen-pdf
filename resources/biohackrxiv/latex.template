@@ -109,7 +109,9 @@
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
 
-\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $citation_author$, ($year$). $title$. \textit{$journal_name$}, $volume$($issue$), $page$. \url{https://doi.org/$formatted_doi$}}}}
+% \fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $citation_author$, ($year$). $title$. \textit{$journal_name$}, $volume$($issue$), $page$. \url{https://doi.org/$formatted_doi$}}}}
+
+\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily Chris Mungall and Hirokazu Chiba \emph{et al.}, $title$ ($year$). \textit{$journal_name$}}}}
 
 
 \fancyfoot[R]{\sffamily \thepage}
@@ -403,35 +405,34 @@ $endif$
   %\hrule
   \sffamily\small
 
-  {\bfseries DOI:} \href{https://doi.org/$formatted_doi$}{\color{linky}{$formatted_doi$}}
+
+  {\bfseries BioHackathon series:} \\
+  \href{http://2019.biohackathon.org/}{\color{linky}{DBCLS BioHackathon 2019}} Fukuoka, Japan \\
+  Logic Programming Working Group
+
 
   \vspace{2mm}
 
-  {\bfseries Software}
-  \begin{itemize}
-    \setlength\itemsep{0em}
-    \item \href{$repository$}{\color{linky}{Repository}} \ExternalLink
-    \item \href{$branch$}{\color{linky}{Branch}} \ExternalLink
-  \end{itemize}
+%  {\bfseries Software}
+%  \begin{itemize}
+%    \setlength\itemsep{0em}
+%    \item \href{$repository$}{\color{linky}{Repository}} \ExternalLink
+%    \item \href{$branch$}{\color{linky}{Branch}} \ExternalLink
+%  \end{itemize}
 
   \vspace{2mm}
 
-  {\bfseries Submitted:} $submitted$\\
-  {\bfseries Published:} $published$
+  {\bfseries Submitted:} $submitted$
+  %  {\bfseries Published:} $published$
 
   \vspace{2mm}
   {\bfseries License}\\
   Authors of papers retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{https://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC-BY}}).
 
-  $if(aas-doi)$
   \vspace{4mm}
-  {\bfseries In partnership with}\\
-  \vspace{2mm}
-  \includegraphics[width=4cm]{$aas_logo_path$}
-  \vspace{2mm}
-  \newline
-  This article and software are linked with research article DOI \href{https://doi.org/$aas-doi$}{\color{linky}{$aas-doi$}}, published in the $aas-journal$.
-  $endif$
+
+  Published by
+  \href{http://biohackrxiv.org/}{\color{linky}{BioHackrXiv.org}}
 
   \end{flushleft}
 }

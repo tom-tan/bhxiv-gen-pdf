@@ -28,19 +28,10 @@ date = time.strftime("%d %b %Y")
 #      --pdf-engine=xelatex
 
 cmd = <<COMMAND
-      -V archive_doi='PENDING'
-      -V paper_url='PENDING'
       -V journal_name='#{JOURNAL_NAME}'
-      -V review_issue_url='XXXX'
-      -V graphics='true'
-      -V issue='1'
-      -V volume='1'
-      -V page='1'
       -V logo_path='#{JOURNAL_LOGO}'
       -V year='#{time.year}'
       -V submitted='#{date}'
-      -V editor_name='Toshiaki Katayama'
-      -V editor_url='https://biohackrxiv.org/'
       -o paper.pdf -V geometry:margin=1in
       --filter pandoc-citeproc paper.md
       --from markdown+autolink_bare_uris

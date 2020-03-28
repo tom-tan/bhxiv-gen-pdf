@@ -1,5 +1,5 @@
 ---
-title: 'Logic Programming Working Group'
+title: 'Logic Programming for the Biomedical Sciences'
 tags:
   - logic programming
 authors:
