@@ -7,7 +7,8 @@ http://biohackrxiv.genenetwork.org/.
 
 * Install
 
-Install this repository, ruby and pandoc.
+Clone this git repository and install ruby and pandoc with
+pandoc-citeproc
 
 * Run
 
@@ -20,4 +21,4 @@ For example from the repository try
 
     ./bin/gen-pdf example/logic/
 
-which will generate the paper as *paper.pdf*.
+which will currently generate the paper as *paper.pdf*.
