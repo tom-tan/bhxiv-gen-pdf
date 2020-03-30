@@ -21,17 +21,21 @@ JOURNAL_NAME='BioHackrXiv.org'
 TEX=resources + "/latex.template"
 CSL=resources + "/apa.csl"
 JOURNAL_LOGO=resources + "/logo.png"
+EVENT_TITLE="DBCLS BioHackathon 2019"
+EVENT_URL="http\://2019.biohackathon.org/"
+EVENT_LOCATION="Fukuoka, Japan"
 
 time = Time.new
 date = time.strftime("%d %b %Y")
-
-#      --pdf-engine=xelatex
 
 cmd = <<COMMAND
       -V journal_name='#{JOURNAL_NAME}'
       -V logo_path='#{JOURNAL_LOGO}'
       -V year='#{time.year}'
       -V submitted='#{date}'
+      -V event_title='#{EVENT_TITLE}'
+      -V event_url='#{EVENT_URL}'
+      -V event_location='#{EVENT_LOCATION}'
       -o paper.pdf -V geometry:margin=1in
       --filter pandoc-citeproc paper.md
       --from markdown+autolink_bare_uris
@@ -46,5 +50,9 @@ p cmd2
 Dir.chdir(dir) do
   print `#{cmd2}`
 end
-FileUtils.move(dir+"/paper.pdf",".")
-print "Generated paper.pdf!\n"
+if File.exist?(dir+"/paper.pdf")
+  FileUtils.move(dir+"/paper.pdf",".")
+  print "Generated paper.pdf!\n"
+else
+  print "Failed to generate paper.pdf!\n"
+end
