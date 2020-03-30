@@ -38,6 +38,11 @@ affiliations:
     index: 6
 date: 3 March 2020
 bibliography: paper.bib
+event:
+  title: DBCLS BioHackathon 2019
+  url: http\://2019.biohackathon.org/ # colon char must be escaped!
+  location: Fukuoka, Japan
+  group: Logic Programming Working Group
 ---
 
 <!--
