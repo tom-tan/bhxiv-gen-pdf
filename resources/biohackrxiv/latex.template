@@ -111,7 +111,8 @@
 
 % \fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $citation_author$, ($year$). $title$. \textit{$journal_name$}, $volume$($issue$), $page$. \url{https://doi.org/$formatted_doi$}}}}
 
-\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $authors_short$, $title_short$ ($year$). \textit{$journal_name$}}}}
+\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $authors_short$, $title_short$ ($year$). {\href{$journal_url$}{$journal_name$}}}}}
+%      \textit{\url{$journal_url$}{$journal_name$}}}}
 
 
 \fancyfoot[R]{\sffamily \thepage}
@@ -428,7 +429,7 @@ $endif$
 
   \vspace{2mm}
   {\bfseries License}\\
-  Authors of papers retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{https://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC-BY}}).
+  Authors retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{https://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC-BY}}).
 
   \vspace{4mm}
 

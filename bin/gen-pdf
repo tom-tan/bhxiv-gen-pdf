@@ -7,6 +7,11 @@ dir=ARGV.shift
 dir="." if not dir
 print "Scanning directory \"#{dir}\" for paper source\n"
 
+bioh=ARGV.shift
+if not bioh
+  bioh= "Japan2019" # default
+end
+
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
 
@@ -16,26 +21,33 @@ raise "Can not find bibtex file #{paperbib}" if not File.exist?(paperbib)
 rootdir=File.expand_path(File.dirname(File.dirname(__FILE__)))
 resources=rootdir + "/resources/biohackrxiv"
 
+EVENT_TYPE = {
+  "Japan2019": {
+                 title: "DBCLS BioHackathon 2019",
+                 URL:   "http\://2019.biohackathon.org/",
+                 location: "Fukuoka, Japan"
+                 }}
+
+EVENT=EVENT_TYPE[bioh.to_sym]
 JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'
+JOURNAL_URL='https://biohackrxiv.org/'
 TEX=resources + "/latex.template"
 CSL=resources + "/apa.csl"
 JOURNAL_LOGO=resources + "/logo.png"
-EVENT_TITLE="DBCLS BioHackathon 2019"
-EVENT_URL="http\://2019.biohackathon.org/"
-EVENT_LOCATION="Fukuoka, Japan"
 
 time = Time.new
 date = time.strftime("%d %b %Y")
 
 cmd = <<COMMAND
       -V journal_name='#{JOURNAL_NAME}'
+      -V journal_url='#{JOURNAL_URL}'
       -V logo_path='#{JOURNAL_LOGO}'
       -V year='#{time.year}'
       -V submitted='#{date}'
-      -V event_title='#{EVENT_TITLE}'
-      -V event_url='#{EVENT_URL}'
-      -V event_location='#{EVENT_LOCATION}'
+      -V event_title='#{EVENT[:title]}'
+      -V event_url='#{EVENT[:URL]}'
+      -V event_location='#{EVENT[:location]}'
       -o paper.pdf -V geometry:margin=1in
       --filter pandoc-citeproc paper.md
       --from markdown+autolink_bare_uris

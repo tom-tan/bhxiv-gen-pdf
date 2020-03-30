@@ -39,6 +39,7 @@ affiliations:
     index: 6
 date: 3 March 2020
 bibliography: paper.bib
+event: Fukuoka2019
 group: Logic programming group
 authors_short: Chris Mungall & Hirokazu Chiba \emph{et al.}
 ---
