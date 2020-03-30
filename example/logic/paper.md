@@ -43,6 +43,8 @@ event:
   url: http\://2019.biohackathon.org/ # colon char must be escaped!
   location: Fukuoka, Japan
   group: Logic Programming Working Group
+authors2:
+  Chris Mungall & Hirokazu Chiba \emph{et al.}
 ---
 
 <!--

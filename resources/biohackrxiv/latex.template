@@ -111,7 +111,7 @@
 
 % \fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $citation_author$, ($year$). $title$. \textit{$journal_name$}, $volume$($issue$), $page$. \url{https://doi.org/$formatted_doi$}}}}
 
-\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily Chris Mungall and Hirokazu Chiba \emph{et al.}, $title$ ($year$). \textit{$journal_name$}}}}
+\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $authors2$, $title$ ($year$). \textit{$journal_name$}}}}
 
 
 \fancyfoot[R]{\sffamily \thepage}
@@ -408,7 +408,7 @@ $endif$
 
   {\bfseries BioHackathon series:} \\
   \href{$event.url$}{\color{linky}{$event.title$}} {$event.location$} \\
-  {$event.group$} \\
+  \emph{$event.group$} \\
 
 
   \vspace{2mm}
