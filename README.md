@@ -21,12 +21,16 @@ Clone this git repository and install the prerequisites listed above
 
 Generate the PDF with
 
-    ./bin/gen-pdf [dir]
+    ./bin/gen-pdf [dir] [bioh]
 
-where *dir* points to a directory where paper.md and paper.bib reside.
+where *dir* points to a directory where paper.md and paper.bib reside
+and *bioh* refers to the event. Events are
+
+    "Japan2019", "France2019", "Covid2020"
+
 For example from the repository try
 
-    ./bin/gen-pdf example/logic/
+    ./bin/gen-pdf example/logic/ "Covid2020"
 
 which will currently generate the paper as *paper.pdf*.
 

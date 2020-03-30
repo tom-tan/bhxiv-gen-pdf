@@ -408,7 +408,7 @@ $endif$
 
 
   {\bfseries BioHackathon series:} \\
-  \href{$event_url$}{\color{linky}{$event_title$}}
+  \href{$event_url$}{\color{linky}{$event_title$}} \\
        {$event_location$} \\
        \emph{$group$} \\
 

@@ -9,7 +9,7 @@ print "Scanning directory \"#{dir}\" for paper source\n"
 
 bioh=ARGV.shift
 if not bioh
-  bioh= "Japan2019" # default
+  bioh= "Covid2020" # default
 end
 
 papermd = dir + "/" + "paper.md"
@@ -22,11 +22,27 @@ rootdir=File.expand_path(File.dirname(File.dirname(__FILE__)))
 resources=rootdir + "/resources/biohackrxiv"
 
 EVENT_TYPE = {
+  "Covid2020": {
+                 title: "COVID-19 Biohackathon",
+                 URL:   "https\://github.com/virtual-biohackathons/covid-19-bh20",
+                 location: "Virtual conference"
+               },
+  "France2019": {
+                 title: "BioHackathon EUROPE 2019",
+                 URL:   "https\://www.biohackathon-europe.org//",
+                 location: "Paris, France"
+               },
   "Japan2019": {
                  title: "DBCLS BioHackathon 2019",
                  URL:   "http\://2019.biohackathon.org/",
                  location: "Fukuoka, Japan"
-                 }}
+               },
+  "Japan2018": {
+                 title: "DBCLS BioHackathon 2018",
+                 URL:   "http\://2018.biohackathon.org/",
+                 location: "Matsue, Japan"
+               },
+}
 
 EVENT=EVENT_TYPE[bioh.to_sym]
 JOURNAL='biohackrxiv'
