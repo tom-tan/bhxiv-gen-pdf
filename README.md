@@ -38,3 +38,9 @@ Build docker container and run
     docker run --rm -it -v $(pwd):/work -w /work biohackrxiv/gen-pdf:local gen-pdf /work/example/logic
 
 Note that the current working directory of host machine is mounted on `/work` inside the container
+
+# Trouble shooting
+
+On some systems you may need to explitely add ruby
+
+    ruby bin/gen-pdf [dir]
