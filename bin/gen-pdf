@@ -25,22 +25,22 @@ EVENT_TYPE = {
   "Covid2020": {
                  title: "COVID-19 Biohackathon",
                  URL:   "https\://github.com/virtual-biohackathons/covid-19-bh20",
-                 location: "Virtual conference"
+                 location: "Virtual conference 2020"
                },
   "France2019": {
-                 title: "BioHackathon EUROPE 2019",
+                 title: "BioHackathon EUROPE",
                  URL:   "https\://www.biohackathon-europe.org//",
-                 location: "Paris, France"
+                 location: "Paris, France, 2019"
                },
   "Japan2019": {
-                 title: "DBCLS BioHackathon 2019",
+                 title: "NBDC/DBCLS BioHackathon",
                  URL:   "http\://2019.biohackathon.org/",
-                 location: "Fukuoka, Japan"
+                 location: "Fukuoka, Japan, 2019"
                },
   "Japan2018": {
-                 title: "DBCLS BioHackathon 2018",
+                 title: "NBDC/DBCLS BioHackathon",
                  URL:   "http\://2018.biohackathon.org/",
-                 location: "Matsue, Japan"
+                 location: "Matsue, Japan, 2018"
                },
 }
 
