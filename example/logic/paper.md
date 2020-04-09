@@ -60,17 +60,16 @@ pasting above link (or yours) in
 # Introduction
 
 As part of the one week Biohackathion 2019 in Fukuoka Japan, we formed
-a working group on Logic Programming for the biomedical sciences.
-
-Logic programming in the form of relational SQL queries on database
-tables and SPARQL queries on semantic web graph data stores, is
-well known to many bioinformaticians. More advanced logic programming,
-however, is underutilized in bioinformatics.  Prolog, for example, is
-a high-level programming language that has its roots in first-order
-logic or first-order predicate calculus.  Another example, miniKanren, is an embedded
+a working group on logic programming for the biomedical sciences.
+Logic programming is understood by many bioinformaticians when it is
+presented in the form of relational SQL queries or SPARQL
+queries. More advanced logic programming, however, is underutilized in
+bioinformatics.  Prolog, for example, is a high-level programming
+language that has its roots in first-order logic or first-order
+predicate calculus.  Another example, miniKanren, is an embedded
 Domain Specific Language for logic programming. Core miniKanren is
-exceptionally simple, with only three logical
-operators and one interface operator [@reasoned2nd].
+exceptionally simple, with only three logical operators and one
+interface operator [@reasoned2nd].
 
 ![Logic programming resolver traverses the solution space to find all matches \label{fig}](./logic-programming.png)
 
@@ -141,7 +140,7 @@ reuse modular components across queries.  For example, to execute a
 range query on a genomic region using the FALDO model [@Bolleman:2016]
 requires authoring a complex query over many triples. If we then wish
 to reuse parts of that query in a more complex query, we have to
-manually compose this together.
+manually compose them together.
 
 The working group added codes to
 [SPARQLProg](https://github.com/cmungall/sparqlprog) which provides a
@@ -153,10 +152,13 @@ SPARQLProg which provides
 sophisticated mapping of logic queries to SPARQL.
 
 For example, a 4-part predicate `feature_in_range` can be composed
-with a binary <nobr>`has_mouse_ortholog`</nobr> predicate:
+with a binary \
+`has_mouse_ortholog` predicate:
 
+```
     feature_in_range(grch38:’X’, 10000000, 20000000, HumanGene),
     has_mouse_ortholog(HumanGene, MouseGene)
+```
 
 This will compile down to a more complex SPARQL query, and execute it against a remote endpoint.
 
@@ -176,14 +178,14 @@ Prolog codes as building blocks for integrative analysis.
     Write up any future work
 -->
 
-The [Biolink Model](https://github.com/biolink/biolink-model) is a
-data model developed for representing biological and biomedical
-knowledge. It includes a schema and generated objects for the data
-model and upper ontology. The BioLink Model was designed with the goal
-of standardizing the way information is represented in a graph store,
-regardless of the formalism used. The working group focused on
-extending this model to support representation of a wide variety of
-knowledge.
+The [Biolink Model](https://github.com/biolink/biolink-model) (see
+above) is a data model developed for representing biological and
+biomedical knowledge. It includes a schema and generated objects for
+the data model and upper ontology. The BioLink Model was designed with
+the goal of standardizing the way information is represented in a
+graph store, regardless of the formalism used. The working group
+focused on extending this model to support representation of a wide
+variety of knowledge.
 
 The following tasks were accomplished as part of the BioHackathon:
 
@@ -237,4 +239,9 @@ programming in bioinformatics. Future work includes expansion of
 accessing semantic web databases using SPARQLProg, expanding the
 BioLink model, and adding dynamic SPARQL support to miniKanren.
 
-# References
+## Acknowledgements
+
+We thank the organizers of the NBDC/DBCLS BioHackathon 2019 for
+travel support for some of the authors.
+
+## References
