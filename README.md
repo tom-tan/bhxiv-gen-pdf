@@ -1,9 +1,13 @@
 # Generate PDF for BioHackrXiv.org
 
 We use pandoc with LaTeX templates to generate the PDF from markdown
-that can be submitted to https://biohackrxiv.org/. Note we also have
+that can be submitted to https://biohackrxiv.org/. Note we also have plans for
 an online tool that can do same from
 http://biohackrxiv.genenetwork.org/.
+
+Here you find the required steps to run to code on your own. There is also a [dockerized version](#run-via-docker).
+
+If you find any bugs, please propose improvements via PRs. Thanks!
 
 # Prerequisites
 
