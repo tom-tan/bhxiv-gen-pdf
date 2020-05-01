@@ -22,15 +22,17 @@
                        (href "/preview.css")
                        (type "text/css"))))
           (body
-           (section ((class "header"))
+           (section ((class "page-header"))
+                    (p "HEYA")
                     (div ((class "logo"))
                          (a ((href "https://biohackrxiv.org"))
                             (img ((width "150") (src "/biohackrxiv-logo-medium.png"))))))
-           (h1 "Testing")
-                (h2 "This is a header")
-                (p (fast-template "templates/test.html"))
-                ,(include-template/xml "templates/test.html")
-                (p "This is " (span ((class "hot")) "hot") ".")))))
+           (section ((class "page-body"))
+                    (h1 "Testing")
+                    (h2 "This is a header")
+                    (p (fast-template "templates/test.html"))
+                    ,(include-template/xml "templates/test.html")
+                    (p "This is " (span ((class "hot")) "hot") "."))))))
 
    ; (response/xexpr
    ; `(html ,(include-template/xml "templates/preview.html") op)))

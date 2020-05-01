@@ -1,0 +1,12 @@
+body {
+    background-color: white;
+}
+
+.page-header {
+    background-color: grey;
+    color: red;
+}
+
+.logo {
+    float: right;
+}
