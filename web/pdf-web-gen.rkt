@@ -16,11 +16,17 @@
 
 (define (start request)
   (response/xexpr
-   `(html (head (title "Testing")
+   `(html ((lang "en"))
+          (head (title "BioHackrXiv PDF generator")
                 (link ((rel "stylesheet")
                        (href "/preview.css")
                        (type "text/css"))))
-          (body (h1 "Testing")
+          (body
+           (section ((class "header"))
+                    (div ((class "logo"))
+                         (a ((href "https://biohackrxiv.org"))
+                            (img ((src "/biohackrxiv-logo-medium.png"))))))
+           (h1 "Testing")
                 (h2 "This is a header")
                 (p (fast-template "templates/test.html"))
                 ,(include-template/xml "templates/test.html")
