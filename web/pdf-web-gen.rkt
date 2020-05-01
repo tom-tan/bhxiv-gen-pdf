@@ -25,7 +25,7 @@
            (section ((class "header"))
                     (div ((class "logo"))
                          (a ((href "https://biohackrxiv.org"))
-                            (img ((src "/biohackrxiv-logo-medium.png"))))))
+                            (img ((width "150") (src "/biohackrxiv-logo-medium.png"))))))
            (h1 "Testing")
                 (h2 "This is a header")
                 (p (fast-template "templates/test.html"))
