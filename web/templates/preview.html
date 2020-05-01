@@ -1,0 +1,31 @@
+<p>
+  You can use this page to compile
+  your <a href="https://biohackrxiv.org/">BioHackrXiv</a> paper before
+  submitting.  Enter the location of your Git repository that contains
+  your <code>paper.md</code>. For more information on how to format your
+  paper,
+  please take a look at our <a href="https://github.com/biohackrxiv/biohackrxiv.github.io">guidelines</a>.
+</p>
+
+        <form id="preview-form" action="/preview" accept-charset="UTF-8" method="post">
+          <div class="form-group">
+            <span class="row">
+              <span class="col">
+                <label for="repository">Paper repository address</label>
+                <input placeholder="e.g. https://github.com/biohackrxiv/submission-templates" class="form-control" type="text" name="repository" id="repository" />
+              </span>
+              <!--
+              <span class="col">
+                <label for="branch">Custom branch (optional)</label>
+                <input placeholder="e.g. branch-name" class="form-control" type="text" name="branch" id="branch" />
+              </span>
+              -->
+            </span>
+          </div>
+          <div class="form-actions">
+            <input type="submit" name="commit" value="Compile paper" class="btn" data-disable-with="Update profile" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
