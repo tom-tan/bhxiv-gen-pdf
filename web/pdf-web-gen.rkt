@@ -1,13 +1,10 @@
-#lang web-server/insta
+#lang racket
 
+(require web-server/servlet
+         web-server/servlet-env)
 (require web-server/templates)
 
 (define title "BioHackrXiv Preview Service")
-
-(static-files-path "static")
-
-(define (fast-template thing)
-  (include-template "templates/test.html"))
 
 (define (start request)
   (response/xexpr
@@ -35,3 +32,17 @@
   ;  '(html
   ;    (head (title "My Blog"))
   ;    (body (h1 "Under construction")))))
+
+(define (preview request)
+  (response/xexpr
+   `(html
+     (body
+      (h1 "HELLO WORLD")))))
+
+(serve/servlet start
+               #:port 8080
+               #:servlet-path "/preview"
+               #:extra-files-paths
+               (list
+                (build-path "static"))
+               )
