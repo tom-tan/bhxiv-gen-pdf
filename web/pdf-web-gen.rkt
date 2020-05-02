@@ -28,25 +28,22 @@
                          (div "by the BioHackrXiv team")))
            ))))
 
-   ; (response/xexpr
-   ; `(html ,(include-template/xml "templates/preview.html") op)))
-
-  ; (response/xexpr
-  ;  '(html
-  ;    (head (title "My Blog"))
-  ;    (body (h1 "Under construction")))))
-
 (define (preview request)
   (response/xexpr
    `(html
      (body
       (h1 "HELLO WORLD")))))
 
+(define (error-handler request)
+  (response/xexpr
+   `(html
+     (body
+      (h1 "ERROR")))))
+
 (define-values (dispatch generate-url)
   (dispatch-rules
-    [("") start]
-    [("preview") start]
-    [("test") preview]
+    [("start") start]
+    [("preview") preview]
     [else (error "There is no procedure to handle the url.")]))
 
 (define (request-handler request)
@@ -55,8 +52,10 @@
 (serve/servlet request-handler
                #:port 8080
                #:launch-browser? #t
-               #:servlet-path "/"
+               #:servlet-path "/start"
+               #:servlet-regexp	#rx"(preview)|(start)"
                #:server-root-path (current-directory)
+               #:file-not-found-responder error-handler
                #:extra-files-paths
                (list
                 (build-path "static"))
