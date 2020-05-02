@@ -29,10 +29,16 @@
            ))))
 
 (define (gen-pdf request)
-  (response/xexpr
-   `(html
-     (body
-      (h1 "GEN PDF")))))
+  (define data (request-post-data/raw request))
+  (define str (format "got post data: ~v" data))
+  (response/full
+    200                  ; HTTP response code.
+    #"OK"                ; HTTP response message.
+    (current-seconds)    ; Timestamp.
+    TEXT/HTML-MIME-TYPE  ; MIME type for content.
+    '()                  ; Additional HTTP headers.
+    (list                ; Content (in bytes) to send to the browser.
+      (string->bytes/utf-8 "TEST"))))
 
 (define (preview request)
   (response/xexpr
