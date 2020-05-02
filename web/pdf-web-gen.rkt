@@ -28,6 +28,12 @@
                          (div "by the BioHackrXiv team")))
            ))))
 
+(define (gen-pdf request)
+  (response/xexpr
+   `(html
+     (body
+      (h1 "GEN PDF")))))
+
 (define (preview request)
   (response/xexpr
    `(html
@@ -44,6 +50,7 @@
   (dispatch-rules
     [("start") start]
     [("preview") preview]
+    [("gen-pdf") #:method "post" gen-pdf]
     [else (error "There is no procedure to handle the url.")]))
 
 (define (request-handler request)
@@ -53,7 +60,7 @@
                #:port 8080
                #:launch-browser? #t
                #:servlet-path "/start"
-               #:servlet-regexp	#rx"(preview)|(start)"
+               #:servlet-regexp	#rx"(preview)|(start)|(gen-pdf)"
                #:server-root-path (current-directory)
                #:file-not-found-responder error-handler
                #:extra-files-paths
