@@ -11,7 +11,7 @@
    `(html ((lang "en"))
           (head (title ,title)
                 (link ((rel "stylesheet")
-                       (href "/preview.css")
+                       (href "/style.css")
                        (type "text/css"))))
           (body
            (section ((class "page-header"))
@@ -39,9 +39,21 @@
      (body
       (h1 "HELLO WORLD")))))
 
-(serve/servlet start
+(define-values (dispatch generate-url)
+  (dispatch-rules
+    [("preview") start]
+    [("test") preview]
+    [else (error "There is no procedure to handle the url.")]))
+
+(define (request-handler request)
+  (dispatch request))
+
+(serve/servlet request-handler
                #:port 8080
+               #:launch-browser? #t
                #:servlet-path "/preview"
+               #:servlet-regexp #rx"start|review"
+               #:server-root-path (current-directory)
                #:extra-files-paths
                (list
                 (build-path "static"))
