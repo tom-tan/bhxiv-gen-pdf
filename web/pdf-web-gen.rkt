@@ -28,6 +28,11 @@
                          (div "by the BioHackrXiv team")))
            ))))
 
+(define (call-gen-pdf data)
+  (eprintf data)
+  "Generating the PDF..."
+  )
+
 (define (gen-pdf request)
   (define data (request-post-data/raw request))
   (define str (format "got post data: ~v" data))
@@ -38,7 +43,7 @@
     TEXT/HTML-MIME-TYPE  ; MIME type for content.
     '()                  ; Additional HTTP headers.
     (list                ; Content (in bytes) to send to the browser.
-      (string->bytes/utf-8 "TEST"))))
+      (string->bytes/utf-8 (call-gen-pdf str)))))
 
 (define (preview request)
   (response/xexpr
