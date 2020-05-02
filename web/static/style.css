@@ -36,6 +36,12 @@ body {
     padding: 20px;
 }
 
+.copyright {
+    grid-area: d;
+    text-align: right;
+    font-size: x-small;
+}
+
 #preview-form {
     padding: 50px;
 }
