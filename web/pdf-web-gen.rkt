@@ -5,6 +5,18 @@
 (require web-server/templates)
 
 (define title "BioHackrXiv Preview Service")
+(define biohackrxiv
+  '(a ((href "https://biohackrxiv.org")) "BioHackrXiv" ))
+(define guidelines
+  '(a ((href "https://github.com/biohackrxiv/biohackrxiv.github.io"))
+      "guidelines" ))
+
+(define intro
+  `(div "You can use this page to compile your " ,biohackrxiv " paper
+before submitting. Enter the location of your Git repository that
+contains your " (code "paper.md") " file in markdown format. For more
+information on how to format your paper, please take a look at our "
+,guidelines))
 
 (define (start request)
   (response/xexpr
@@ -18,15 +30,20 @@
                     (div ((class "logo"))
                          (a ((href "https://biohackrxiv.org"))
                             (img ((width "150") (src "/biohackrxiv-logo-medium.png"))))))
-           (hr)
            (section ((class "page-body"))
                     (h1 ,title)
-                    ,(include-template/xml "templates/preview.html"))
+                    (p ,intro)
+                    ;; ,(include-template/xml "templates/preview.html"))
+           (section ((class "page-form"))
+                    (formlet
+                     (div "Repository: " (input ([name "repository"][id "repository"])))
+                     (div (input ([type "submit"][name "commit"][id "button3"])))))
+
            (section ((class "page-footer"))
                     (hr)
                     (div ((class "copyright"))
-                         (div "by the BioHackrXiv team")))
-           ))))
+                         (div "by the " ,biohackrxiv " team")))
+           )))))
 
 (define (call-gen-pdf data)
   (eprintf data)
@@ -35,6 +52,7 @@
 
 (define (gen-pdf request)
   (define data (request-post-data/raw request))
+  ;; given: #"repository=&commit=Generate+PDF"
   (define str (format "got post data: ~v" data))
   (response/full
     200                  ; HTTP response code.
@@ -62,6 +80,7 @@
     [("start") start]
     [("preview") preview]
     [("gen-pdf") #:method "post" gen-pdf]
+    ; [("style.css") (λ (_) (file-response 200 #"OK" "style.css"))])
     [else (error "There is no procedure to handle the url.")]))
 
 (define (request-handler request)
