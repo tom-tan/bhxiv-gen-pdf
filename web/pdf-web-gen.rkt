@@ -32,25 +32,32 @@ information on how to format your paper, please take a look at our "
                             (img ((width "150") (src "/biohackrxiv-logo-medium.png"))))))
            (section ((class "page-body"))
                     (h1 ,title)
-                    (p ,intro)
+                    (p ,intro))
                     ;; ,(include-template/xml "templates/preview.html"))
            (section ((class "page-form"))
-                    (formlet
+                    (form ([id "preview-form"][action "gen-pdf"]
+                                              [accept-charset "UTF-8"])
                      (div "Repository: " (input ([name "repository"][id "repository"])))
-                     (div (input ([type "submit"][name "commit"][id "button3"])))))
+                     (label ((for "journal")) "Compile paper for:")
+                     (div (radio-group
+                            (radio (input ([type "radio"][name "journal"][value "bh2019"]) "BH2019" ))
+                            (radio (input ([type "radio"][name "journal"][value "vbh2020"][checked "1"]) "VBH2020" ))
+                            ))
+                     (div (input ([type "submit"][name "commit"][value "submit"][id "button3"])))))
+
 
            (section ((class "page-footer"))
                     (hr)
                     (div ((class "copyright"))
                          (div "by the " ,biohackrxiv " team")))
-           )))))
+           ))))
 
 (define (call-gen-pdf data)
   (eprintf data)
-  "Generating the PDF..."
+  "Generating PDF..."
   )
 
-(define (gen-pdf request)
+(define (gen-pdf2 request)
   (define data (request-post-data/raw request))
   ;; given: #"repository=&commit=Generate+PDF"
   (define str (format "got post data: ~v" data))
@@ -63,11 +70,17 @@ information on how to format your paper, please take a look at our "
     (list                ; Content (in bytes) to send to the browser.
       (string->bytes/utf-8 (call-gen-pdf str)))))
 
-(define (preview request)
+(define (gen-pdf request)
+  (define bindings (request-bindings request))
+  (define journal (extract-binding/single 'journal bindings))
+  (define repository (extract-binding/single 'repository bindings))
   (response/xexpr
    `(html
      (body
-      (h1 "HELLO WORLD")))))
+      (h1 "Generating PDF... "
+          (p ,journal)
+          (p ,repository)
+          )))))
 
 (define (error-handler request)
   (response/xexpr
@@ -78,8 +91,8 @@ information on how to format your paper, please take a look at our "
 (define-values (dispatch generate-url)
   (dispatch-rules
     [("start") start]
-    [("preview") preview]
-    [("gen-pdf") #:method "post" gen-pdf]
+    ;; [("gen-pdf") #:method "post" gen-pdf]
+    [("gen-pdf") gen-pdf]
     ; [("style.css") (λ (_) (file-response 200 #"OK" "style.css"))])
     [else (error "There is no procedure to handle the url.")]))
 
