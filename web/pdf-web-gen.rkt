@@ -78,17 +78,16 @@ information on how to format your paper, please take a look at our "
   (define journal (extract-binding/single 'journal bindings))
   (define repository (extract-binding/single 'repository bindings))
   (define promise2 (number->string (current-seconds)))
-  ;; (define promise2 (string->immutable-string execute2))
-  (begin
+  (define promise4
+    (with-output-to-string (λ () (system "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf ~/iwrk/opensource/code/jro/bhxiv-gen-pdf/example/logic/"))))
     (response/xexpr
      `(html
        (body
         (h1 "Generating PDF... "
             (p ,journal)
             (p ,repository)
-            (p ,promise2)
-            (p ,promise3)
-            )))))
+            (p ,promise4)
+            ))))
   )
 
 (define (error-handler request)

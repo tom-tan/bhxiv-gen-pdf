@@ -11,4 +11,11 @@
 
 (define promise3
   (begin
-    (with-output-to-string (λ () (system "ls /tmp")))))
+    (current-seconds)
+    (with-output-to-string (λ () (system "date")))))
+
+(define promise4
+  (begin
+;     (with-output-to-string (λ () (system "../bin/gen-pdf ~/iwrk/opensource/code/jro/bhxiv-gen-pdf/example/logic/")))
+    (number->string (current-seconds))
+                              ))
