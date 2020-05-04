@@ -1,5 +1,7 @@
 #lang racket
 
+(require "./execute.rkt")
+
 (require web-server/servlet
          web-server/servlet-env)
 (require web-server/templates)
@@ -70,17 +72,24 @@ information on how to format your paper, please take a look at our "
     (list                ; Content (in bytes) to send to the browser.
       (string->bytes/utf-8 (call-gen-pdf str)))))
 
+
 (define (gen-pdf request)
   (define bindings (request-bindings request))
   (define journal (extract-binding/single 'journal bindings))
   (define repository (extract-binding/single 'repository bindings))
-  (response/xexpr
-   `(html
-     (body
-      (h1 "Generating PDF... "
-          (p ,journal)
-          (p ,repository)
-          )))))
+  (define promise2 (number->string (current-seconds)))
+  ;; (define promise2 (string->immutable-string execute2))
+  (begin
+    (response/xexpr
+     `(html
+       (body
+        (h1 "Generating PDF... "
+            (p ,journal)
+            (p ,repository)
+            (p ,promise2)
+            (p ,promise3)
+            )))))
+  )
 
 (define (error-handler request)
   (response/xexpr
@@ -102,7 +111,9 @@ information on how to format your paper, please take a look at our "
 (serve/servlet request-handler
                #:port 8080
                #:launch-browser? #t
+               #:stateless? #t
                #:servlet-path "/start"
+               #:servlets-root "/"
                #:servlet-regexp	#rx"(preview)|(start)|(gen-pdf)"
                #:server-root-path (current-directory)
                #:file-not-found-responder error-handler
