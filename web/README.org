@@ -1,0 +1,20 @@
+* Web-server
+
+The web-server for the PDF generator is written in Racket Lisp.
+It requires ruby and pandoc for the generator itself, as well
+as Racket for the HTTP server.
+
+Run from the base dir with
+
+#+begin_src sh
+env GIT_SSL_NO_VERIFY=true TMPDIR=~/tmp racket -L info web/pdf-web-gen.rkt
+#+end_src
+
+To run it in a Guix container:
+
+#+begin_src sh
+epysode:~/bhxiv-gen-pdf$ guix environment -C guix --ad-hoc racket \
+  ghc-pandoc ghc-pandoc-citeproc ruby nss-certs openssl \
+  ghc-pandoc-types  python-pandocfilters texlive curl \
+  git --network --share=/tmp
+#+end_src
