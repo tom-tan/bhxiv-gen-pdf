@@ -100,22 +100,22 @@ how to format your paper, please take a look at our " ,guidelines))
     [("start") start]
     ;; [("gen-pdf") #:method "post" gen-pdf]
     [("gen-pdf") gen-pdf]
-    ; [("style.css") (λ (_) (file-response 200 #"OK" "style.css"))])
-    [else (error "There is no procedure to handle the url.")]))
+    ; [else (error "There is no procedure to handle the url.")]))
+    ))
 
 (define (request-handler request)
   (dispatch request))
 
 (serve/servlet request-handler
                #:port 8080
-               #:launch-browser? #t
+               #:launch-browser? #f
                #:stateless? #t
                #:servlet-path "/start"
                #:servlets-root "/"
-               #:servlet-regexp	#rx"(preview)|(start)|(gen-pdf)"
+               #:servlet-regexp	#rx""
                #:server-root-path (current-directory)
                #:file-not-found-responder error-handler
                #:extra-files-paths
                (list
-                (build-path "static"))
+                (build-path (current-directory) "web/static"))
                )
