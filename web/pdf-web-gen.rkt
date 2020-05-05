@@ -78,9 +78,14 @@ information on how to format your paper, please take a look at our "
   (define journal (extract-binding/single 'journal bindings))
   (define repository (extract-binding/single 'repository bindings))
   (define promise2 (number->string (current-seconds)))
-  (define tmpfn (make-temporary-file "paper~a.pdf"))
+  (define tmpdir (path->string (make-temporary-file "paper~a" 'directory)))
   (define promise4
-    (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf ~/iwrk/opensource/code/jro/bhxiv-gen-pdf/example/logic/ Covid2020 " (path->string tmpfn))))))
+    (begin
+      (current-directory tmpdir)
+      (with-output-to-string (λ () (system (string-append "git clone " repository))))
+      (let ([papermd (first (find-files (lambda (filen) (string-contains? (path->string filen) "paper.md"))))])
+      (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " Covid2020 " (path->string (build-path tmpdir "paper.pdf")))))))
+      ))
     (response/xexpr
      `(html
        (body
@@ -88,7 +93,7 @@ information on how to format your paper, please take a look at our "
             (p ,journal)
             (p ,repository)
             (p ,promise4)
-            (p ,(path->string tmpfn))
+            (p ,tmpdir)
             ))))
   )
 
