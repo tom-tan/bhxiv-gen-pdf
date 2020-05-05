@@ -55,8 +55,8 @@ information on how to format your paper, please take a look at our "
            ))))
 
 (define (call-gen-pdf data)
-  (eprintf data)
-  "Generating PDF..."
+  (define in (open-input-file "/home/wrk/tmp/paper15886923181588692318576/paper.pdf"))
+  (read-bytes 1000000 in)
   )
 
 (define (gen-pdf2 request)
@@ -67,10 +67,13 @@ information on how to format your paper, please take a look at our "
     200                  ; HTTP response code.
     #"OK"                ; HTTP response message.
     (current-seconds)    ; Timestamp.
-    TEXT/HTML-MIME-TYPE  ; MIME type for content.
-    '()                  ; Additional HTTP headers.
-    (list                ; Content (in bytes) to send to the browser.
-      (string->bytes/utf-8 (call-gen-pdf str)))))
+    ; TEXT/HTML-MIME-TYPE  ; MIME type for content.
+    ; Content-Type: text/html; charset=utf-8
+    #"application/pdf"
+    '(
+      "Content-Disposition:attachment;filename='downloaded.pdf'")                  ; Additional HTTP headers.
+    (bytes->list                ; Content (in bytes) to send to the browser.
+      (call-gen-pdf str))))
 
 
 (define (gen-pdf request)
@@ -79,23 +82,22 @@ information on how to format your paper, please take a look at our "
   (define repository (extract-binding/single 'repository bindings))
   (define promise2 (number->string (current-seconds)))
   (define tmpdir (path->string (make-temporary-file "paper~a" 'directory)))
+  (define tmp-pdf (path->string (build-path tmpdir "paper.pdf")))
   (define promise4
     (begin
       (current-directory tmpdir)
       (with-output-to-string (λ () (system (string-append "git clone " repository))))
       (let ([papermd (first (find-files (lambda (filen) (string-contains? (path->string filen) "paper.md"))))])
-      (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " Covid2020 " (path->string (build-path tmpdir "paper.pdf")))))))
+      (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " Covid2020 " tmp-pdf)))))
       ))
-    (response/xexpr
-     `(html
-       (body
-        (h1 "Generating PDF... "
-            (p ,journal)
-            (p ,repository)
-            (p ,promise4)
-            (p ,tmpdir)
-            ))))
-  )
+  (response/full
+    200                  ; HTTP response code.
+    #"OK"                ; HTTP response message.
+    (current-seconds)    ; Timestamp.
+    #"application/pdf"
+    ; (make-header #"Content-Disposition" #"attachment")
+    (list (make-header #"filename" #"biohackrxiv-paper.pdf"))
+    (list (call-gen-pdf tmp-pdf))))
 
 (define (error-handler request)
   (response/xexpr
