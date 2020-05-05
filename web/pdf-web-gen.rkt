@@ -12,13 +12,16 @@
 (define guidelines
   '(a ((href "https://github.com/biohackrxiv/biohackrxiv.github.io"))
       "guidelines" ))
+(define paper-repo-url
+  '(a ((href "https://github.com/biohackrxiv/bhxiv-gen-pdf"))
+      "https://github.com/biohackrxiv/bhxiv-gen-pdf"))
 
 (define intro
   `(div "You can use this page to compile your " ,biohackrxiv " paper
 before submitting. Enter the location of your Git repository that
-contains your " (code "paper.md") " file in markdown format. For more
-information on how to format your paper, please take a look at our "
-,guidelines))
+contains your " (code "paper.md") " file in markdown format
+and " (code "paper.bib" ) " in bibtex format. For more information on
+how to format your paper, please take a look at our " ,guidelines))
 
 (define (start request)
   (response/xexpr
@@ -39,14 +42,15 @@ information on how to format your paper, please take a look at our "
            (section ((class "page-form"))
                     (form ([id "preview-form"][action "gen-pdf"]
                                               [accept-charset "UTF-8"])
-                     (div "Repository: " (input ([name "repository"][id "repository"])))
-                     (label ((for "journal")) "Compile paper for:")
-                     (div (radio-group
-                            (radio (input ([type "radio"][name "journal"][value "bh2019"]) "BH2019" ))
-                            (radio (input ([type "radio"][name "journal"][value "vbh2020"][checked "1"]) "VBH2020" ))
-                            ))
-                     (div (input ([type "submit"][name "commit"][value "submit"][id "button3"])))))
+                          (div "Repository: " (input ([name "repository"][id "repository"])))
+                          (p "For example paste URL: " ,paper-repo-url)
 
+                          (label ((for "journal")) "Compile paper for:")
+                          (div (radio-group
+                                (radio (input ([type "radio"][name "journal"][value "bh2019"]) "BH2019" ))
+                                (radio (input ([type "radio"][name "journal"][value "vbh2020"][checked "1"]) "VBH2020" ))
+                                ))
+                          (div (input ([type "submit"][name "commit"][value "submit"][id "button3"])))))
 
            (section ((class "page-footer"))
                     (hr)
@@ -56,25 +60,8 @@ information on how to format your paper, please take a look at our "
 
 (define (call-gen-pdf data)
   (define in (open-input-file "/home/wrk/tmp/paper15886923181588692318576/paper.pdf"))
-  (read-bytes 1000000 in)
+  (read-bytes 10000000 in)
   )
-
-(define (gen-pdf2 request)
-  (define data (request-post-data/raw request))
-  ;; given: #"repository=&commit=Generate+PDF"
-  (define str (format "got post data: ~v" data))
-  (response/full
-    200                  ; HTTP response code.
-    #"OK"                ; HTTP response message.
-    (current-seconds)    ; Timestamp.
-    ; TEXT/HTML-MIME-TYPE  ; MIME type for content.
-    ; Content-Type: text/html; charset=utf-8
-    #"application/pdf"
-    '(
-      "Content-Disposition:attachment;filename='downloaded.pdf'")                  ; Additional HTTP headers.
-    (bytes->list                ; Content (in bytes) to send to the browser.
-      (call-gen-pdf str))))
-
 
 (define (gen-pdf request)
   (define bindings (request-bindings request))
