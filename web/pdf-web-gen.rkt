@@ -47,8 +47,11 @@ how to format your paper, please take a look at our " ,guidelines))
 
                           (label ((for "journal")) "Compile paper for:")
                           (div (radio-group
-                                (radio (input ([type "radio"][name "journal"][value "bh2019"]) "BH2019" ))
-                                (radio (input ([type "radio"][name "journal"][value "vbh2020"][checked "1"]) "VBH2020" ))
+
+                                (div (radio (input ([type "radio"][name "journal"][value "Japan2018"]) "NBDC/DBCLS BioHackathon, Matsue, Japan, 2018" )))
+                                (div (radio (input ([type "radio"][name "journal"][value "Japan2019"]) "NBDC/DBCLS BioHackathon, Fukuoka, Japan, 2019" )))
+                                (div (radio (input ([type "radio"][name "journal"][value "France2019"]) "BioHackathon EUROPE, Paris, France, 2019" )))
+                                (div (radio (input ([type "radio"][name "journal"][value "Covid2020"][checked "1"]) "Virtual BioHackathon Covid-2020" )))
                                 ))
                           (div (input ([type "submit"][name "commit"][value "submit"][id "button3"])))))
 
@@ -58,8 +61,8 @@ how to format your paper, please take a look at our " ,guidelines))
                          (div "by the " ,biohackrxiv " team")))
            ))))
 
-(define (call-gen-pdf data)
-  (define in (open-input-file "/home/wrk/tmp/paper15886923181588692318576/paper.pdf"))
+(define (call-gen-pdf fn)
+  (define in (open-input-file fn))
   (read-bytes 10000000 in)
   )
 
@@ -75,7 +78,7 @@ how to format your paper, please take a look at our " ,guidelines))
       (current-directory tmpdir)
       (with-output-to-string (λ () (system (string-append "git clone " repository))))
       (let ([papermd (first (find-files (lambda (filen) (string-contains? (path->string filen) "paper.md"))))])
-      (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " Covid2020 " tmp-pdf)))))
+      (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " " journal " " tmp-pdf)))))
       ))
   (response/full
     200                  ; HTTP response code.
