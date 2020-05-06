@@ -36,9 +36,18 @@ body {
     padding: 20px;
 }
 
-.copyright {
+.page-footer {
     grid-area: d;
+}
+
+.sourcecode {
+    text-align: left;
+    float: left;
+    font-size: x-small;
+}
+.copyright {
     text-align: right;
+    float: right;
     font-size: x-small;
 }
 

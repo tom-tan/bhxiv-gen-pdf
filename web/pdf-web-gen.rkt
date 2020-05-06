@@ -15,6 +15,9 @@
 (define paper-repo-url
   '(a ((href "https://github.com/biohackrxiv/bhxiv-gen-pdf"))
       "https://github.com/biohackrxiv/bhxiv-gen-pdf"))
+(define code-repo-url
+  '(a ((href "https://github.com/biohackrxiv/bhxiv-gen-pdf/blob/master/web/pdf-web-gen.rkt"))
+      "code"))
 
 (define intro
   `(div "You can use this page to compile your " ,biohackrxiv " paper
@@ -57,8 +60,8 @@ how to format your paper, please take a look at our " ,guidelines))
 
            (section ((class "page-footer"))
                     (hr)
-                    (div ((class "copyright"))
-                         (div "by the " ,biohackrxiv " team")))
+                    (div ((class "copyright")) "Source " ,code-repo-url
+                          " by the " ,biohackrxiv " team"))
            ))))
 
 (define (call-gen-pdf fn)
