@@ -42,7 +42,7 @@ how to format your paper, please take a look at our " ,guidelines))
            (section ((class "page-form"))
                     (form ([id "preview-form"][action "gen-pdf"]
                                               [accept-charset "UTF-8"])
-                          (div "Repository: " (input ([name "repository"][id "repository"])))
+                          (div "Repository: " (input ([name "repository"][id "repository"][required ""])))
                           (p "For example paste URL: " ,paper-repo-url)
 
                           (label ((for "journal")) "Compile paper for:")
@@ -108,7 +108,7 @@ how to format your paper, please take a look at our " ,guidelines))
 
 (serve/servlet request-handler
                #:port 8080
-               #:launch-browser? #f
+               #:launch-browser? #t
                #:stateless? #t
                #:servlet-path "/start"
                #:servlets-root "/"
