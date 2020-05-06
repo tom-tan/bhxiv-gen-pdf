@@ -62,9 +62,8 @@ how to format your paper, please take a look at our " ,guidelines))
            ))))
 
 (define (call-gen-pdf fn)
-  (define in (open-input-file fn))
-  (read-bytes 10000000 in)
-  )
+  (with-input-from-file fn
+    (lambda () (read-bytes (file-size fn)))))
 
 (define (gen-pdf request)
   (define bindings (request-bindings request))
