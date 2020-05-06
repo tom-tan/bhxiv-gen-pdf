@@ -2,9 +2,9 @@
 #
 # Generate a PDF from markdown input (paper.md) in dir
 #
-# Usage:   gen-pdf dir target-journal paper.pdf
+# Usage:   gen-pdf [--debug] dir [target-journal paper.pdf]
 #
-# Example: gen-pdf ./example/paper Japan2019 output.pdf
+# Example: gen-pdf --debug ./example/paper Japan2019 output.pdf
 #
 require 'fileutils'
 require 'time'
@@ -12,6 +12,10 @@ require 'time'
 p ARGV
 
 dir=ARGV.shift
+if dir == "--debug"
+  dir=ARGV.shift
+  is_debug = true
+end
 dir="." if not dir
 print "Scanning directory \"#{dir}\" for paper source\n"
 
@@ -22,13 +26,16 @@ end
 
 outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
-$stderr.print(outfn)
+$stderr.print("Generating #{outfn}\n")
 
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
 
 paperbib = dir + "/" + "paper.bib"
-raise "Can not find bibtex file #{paperbib}" if not File.exist?(paperbib)
+if not File.exist?(paperbib)
+  $stderr.print "WARNING: can not find bibtex file #{paperbib}\n"
+  print `touch #{paperbib}`
+end
 
 rootdir=File.expand_path(File.dirname(File.dirname(__FILE__)))
 resources=rootdir + "/resources/biohackrxiv"
@@ -68,6 +75,7 @@ time = Time.new
 date = time.strftime("%d %b %Y")
 
 cmd = <<COMMAND
+      #{ ( is_debug ? "--verbose" : "") }
       -V journal_name='#{JOURNAL_NAME}'
       -V journal_url='#{JOURNAL_URL}'
       -V logo_path='#{JOURNAL_LOGO}'
@@ -77,7 +85,8 @@ cmd = <<COMMAND
       -V event_url='#{EVENT[:URL]}'
       -V event_location='#{EVENT[:location]}'
       -o '#{outfn}' -V geometry:margin=1in
-      --filter pandoc-citeproc paper.md
+      #{ ( paperbib ? "--filter pandoc-citeproc" : "") }
+      paper.md
       --from markdown+autolink_bare_uris
       --template '#{TEX}'
       --csl=#{CSL}
@@ -90,8 +99,10 @@ p cmd2
 Dir.chdir(dir) do
   print `#{cmd2}`
 end
-if File.exist?(outfn)
-  print("Generated #{outfn}")
+
+checkfn=dir+outfn
+if File.exist?(checkfn)
+  print("Generated #{checkfn}")
 else
-  print("Failed to generate #{outfn}!\n")
+  print("Failed to generate #{checkfn}!\n")
 end
