@@ -42,7 +42,7 @@ how to format your paper, please take a look at our " ,guidelines))
            (section ((class "page-form"))
                     (form ([id "preview-form"][action "gen-pdf"]
                                               [accept-charset "UTF-8"])
-                          (div "Repository: " (input ([name "repository"][id "repository"][required ""])))
+                          (div "Repository: " (input ([name "repository"][id "repository"][required ""][placeholder "https://github.com/biohackrxiv/submission-templates.git"])))
                           (p "For example paste URL: " ,paper-repo-url)
 
                           (label ((for "journal")) "Compile paper for:")
@@ -97,6 +97,7 @@ how to format your paper, please take a look at our " ,guidelines))
 (define-values (dispatch generate-url)
   (dispatch-rules
     [("start") start]
+    [("") start]
     ;; [("gen-pdf") #:method "post" gen-pdf]
     [("gen-pdf") gen-pdf]
     ; [else (error "There is no procedure to handle the url.")]))
@@ -109,9 +110,9 @@ how to format your paper, please take a look at our " ,guidelines))
                #:port 8080
                #:launch-browser? #t
                #:stateless? #t
-               #:servlet-path "/start"
+               #:servlet-path "/"
                #:servlets-root "/"
-               #:servlet-regexp	#rx""
+               #:servlet-regexp	#rx"start|gen-pdf|\\s*"
                #:server-root-path (current-directory)
                #:file-not-found-responder error-handler
                #:extra-files-paths
