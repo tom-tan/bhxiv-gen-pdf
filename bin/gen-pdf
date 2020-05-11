@@ -42,7 +42,7 @@ resources=rootdir + "/resources/biohackrxiv"
 
 EVENT_TYPE = {
   "Covid2020": {
-                 title: "COVID-19 Biohackathon",
+                 title: "COVID-19 BioHackathon",
                  URL:   "https\://github.com/virtual-biohackathons/covid-19-bh20",
                  location: "Virtual conference 2020"
                },
