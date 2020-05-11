@@ -6,12 +6,14 @@
          web-server/servlet-env)
 (require web-server/templates)
 
-(define title "BioHackrXiv Preview Service")
+(define title "BioHackrXiv preview service")
+(define left-title
+  '(a ((href "http://preview.biohackrxiv.org/")) "PDF Generator"))
 (define biohackrxiv
   '(a ((href "https://biohackrxiv.org")) "BioHackrXiv" ))
 (define guidelines
   '(a ((href "https://github.com/biohackrxiv/biohackrxiv.github.io"))
-      "guidelines" ))
+      "journal guidelines" ))
 (define paper-repo-url
   '(a ((href "https://github.com/biohackrxiv/bhxiv-gen-pdf"))
       "https://github.com/biohackrxiv/bhxiv-gen-pdf"))
@@ -23,7 +25,7 @@
   `(div "You can use this page to compile your " ,biohackrxiv " paper
 before submitting. Enter the location of your Git repository that
 contains your " (code "paper.md") " file in markdown format
-and " (code "paper.bib" ) " in bibtex format. For more information on
+and " (code "paper.bib" ) " in BibTex format. For more information on
 how to format your paper, please take a look at our " ,guidelines))
 
 (define (start request)
@@ -32,20 +34,24 @@ how to format your paper, please take a look at our " ,guidelines))
           (head (title ,title)
                 (link ((rel "stylesheet")
                        (href "/style.css")
+                       (type "text/css")))
+                (link ((rel "stylesheet")
+                       (href "/biohackrxiv.css")
                        (type "text/css"))))
           (body
-           (section ((class "page-header"))
+           (header
+            (h1 ,left-title))
+           (section ((class "page-body"))
+                    ;; ,(include-template/xml "templates/preview.html"))
+                    (h1 ,title)
+
                     (div ((class "logo"))
                          (a ((href "https://biohackrxiv.org"))
-                            (img ((width "150") (src "/biohackrxiv-logo-medium.png"))))))
-           (section ((class "page-body"))
-                    (h1 ,title)
-                    (p ,intro))
-                    ;; ,(include-template/xml "templates/preview.html"))
-           (section ((class "page-form"))
+                            (img ((src "/BioHackrXiv-logo-transparent-340x140.png")))))
+                    (p ,intro)
                     (form ([id "preview-form"][action "gen-pdf"]
                                               [accept-charset "UTF-8"])
-                          (div "Repository: " (input ([name "repository"][id "repository"][required ""][placeholder "https://github.com/biohackrxiv/submission-templates.git"])))
+                          (div "Repository: " (input ([name "repository"][size "60"][id "repository"][required ""][placeholder "https://github.com/biohackrxiv/submission-templates.git"])))
                           (p "For example paste URL: " ,paper-repo-url)
 
                           (label ((for "journal")) "Compile paper for:")
@@ -56,13 +62,13 @@ how to format your paper, please take a look at our " ,guidelines))
                                 (div (radio (input ([type "radio"][name "journal"][value "France2019"]) "BioHackathon EUROPE, Paris, France, 2019" )))
                                 (div (radio (input ([type "radio"][name "journal"][value "Covid2020"][checked "1"]) "Virtual BioHackathon Covid-2020" )))
                                 ))
-                          (div (input ([type "submit"][name "commit"][value "submit"][id "button3"])))))
+                          (div (input ([type "submit"][name "commit"][value "submit"]))))
 
-           (section ((class "page-footer"))
-                    (hr)
-                    (div ((class "copyright")) "Source " ,code-repo-url
-                          " by the " ,biohackrxiv " team"))
-           ))))
+           (footer
+            (hr)
+            (div ((class "copyright")) "Source " ,code-repo-url
+                 " by the " ,biohackrxiv " team"))
+           )))))
 
 (define (call-gen-pdf fn)
   (with-input-from-file fn

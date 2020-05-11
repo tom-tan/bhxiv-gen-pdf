@@ -1,0 +1,12 @@
+header {
+    width: 30%;
+    position: relative;
+}
+body {
+}
+section.page-body {
+    width: 70%;
+}
+footer {
+    display: none;
+}
