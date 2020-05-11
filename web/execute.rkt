@@ -1,24 +1,13 @@
 #lang racket
 
-(provide execute2 promise3)
+(provide invoke)
 
-; (require racket/date)
-
-(define execute2
-    ; (display "YES")
-    ; (sleep 2)
-    (number->string (current-seconds)) )
-
-(define promise3
-  (begin
-    (current-seconds)
-    (with-output-to-string (λ () (system "date")))))
-
-(define promise4
-  (begin
-;     (with-output-to-string (λ () (system "../bin/gen-pdf ~/iwrk/opensource/code/jro/bhxiv-gen-pdf/example/logic/")))
-    (number->string (current-seconds))
-                              ))
+(define (invoke repository)
+  (error
+   (call-with-output-string
+    (lambda (p) (parameterize ([current-error-port p])
+                  (system (string-append "git clone " repository))))))
+  )
 
 #|
  (let* ((out-str-port (open-output-string))
@@ -26,4 +15,9 @@
         (system-rv
          (parameterize ((current-output-port out-str-port) (current-error-port err-str-port))
            (system "echo -n foo; echo bar 1>&2"))))
+      (error
+       (call-with-output-string
+         (lambda (p) (parameterize ([current-error-port p])
+               (system (string-append "git clone " repository))))))
+      ; (with-output-to-string (λ () (system (string-append "git clone " repository)))))
 |#

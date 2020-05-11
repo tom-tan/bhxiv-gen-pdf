@@ -78,13 +78,12 @@ how to format your paper, please take a look at our " ,guidelines))
   (define bindings (request-bindings request))
   (define journal (extract-binding/single 'journal bindings))
   (define repository (extract-binding/single 'repository bindings))
-  (define promise2 (number->string (current-seconds)))
   (define tmpdir (path->string (make-temporary-file "paper~a" 'directory)))
   (define tmp-pdf (path->string (build-path tmpdir "paper.pdf")))
-  (define promise4
+  (define compile
     (begin
       (current-directory tmpdir)
-      (with-output-to-string (λ () (system (string-append "git clone " repository))))
+      (invoke repository)
       (let ([papermd (first (find-files (lambda (filen) (string-contains? (path->string filen) "paper.md"))))])
       (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " " journal " " tmp-pdf)))))
       ))
