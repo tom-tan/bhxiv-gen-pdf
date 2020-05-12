@@ -83,10 +83,11 @@ how to format your paper, please take a look at our " ,guidelines))
   (define compile
     (begin
       (current-directory tmpdir)
-      (invoke repository)
-      (let ([papermd (first (find-files (lambda (filen) (string-contains? (path->string filen) "paper.md"))))])
-      (with-output-to-string (λ () (system (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only papermd)) " " journal " " tmp-pdf)))))
-      ))
+      (invoke (string-append "git clone " repository))
+      (let ([papermds (find-files (lambda (filen) (string-contains? (path->string filen) "paper.md")))])
+        (if (= (length papermds) 0)
+            (error (string-append "paper.md not found in " repository))
+            (invoke (string-append "ruby /home/wrk/iwrk/opensource/code/jro/bhxiv-gen-pdf/bin/gen-pdf " (path->string (path-only (first papermds))) " " journal " " tmp-pdf))))))
   (response/full
     200                  ; HTTP response code.
     #"OK"                ; HTTP response message.
