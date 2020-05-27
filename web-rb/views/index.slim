@@ -26,7 +26,7 @@ html lang="en"
         | in BibTex format. For more information on
         | how to format your paper, please take a look at our
         a href="https://github.com/biohackrxiv/biohackrxiv.github.io"  journal guidelines
-      form#preview-form accept-charset="UTF-8" action="gen-pdf"
+      form#preview-form accept-charset="UTF-8" action="gen-pdf" method="POST"
         div
           | Repository:
           input#repository name="repository" placeholder="https://github.com/biohackrxiv/submission-templates.git" required="" size="60" /
