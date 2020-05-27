@@ -1,4 +1,4 @@
-# Web-server in Ruby/Sinatra/Docker
+# Web-server in Ruby/Sinatra/Puma/Nginx on Docker-compose
 
 For testing:
 
