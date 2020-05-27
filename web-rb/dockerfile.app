@@ -13,4 +13,4 @@ COPY . /app/
 WORKDIR /app
 RUN bundle install
 EXPOSE 9292
-CMD ["bundle", "exe", "rackup", "-o", "0.0.0.0"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

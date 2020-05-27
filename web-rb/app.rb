@@ -2,6 +2,10 @@ require 'sinatra'
 require 'slim'
 require 'securerandom'
 
+configure {
+  set :server, :puma
+}
+
 class BHXIV < Sinatra::Base
   set :public_folder, 'public'
 
