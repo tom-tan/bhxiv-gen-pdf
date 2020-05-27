@@ -1,0 +1,13 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: biohackrxiv/gen-pdf-app:0.1.0
+    container_name: gen-pdf-app
+    volumes:
+      - ${PWD}/tmp:/tmp
+    ports:
+      - 9292:9292
+    restart: always

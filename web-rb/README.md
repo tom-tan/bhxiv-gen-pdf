@@ -3,18 +3,18 @@
 For testing:
 
 ```
-$ docker build -t bhxiv-app:test .
-$ docker run -it --rm -p 9292:9292 bhxiv-app:test
+$ cd bhxiv-gen-pdf/web-rb
+$ docker-compose up --build
 ```
 
 To run on background:
 
 ```
-$ docker run -d --rm -p 9292:9292 bhxiv-app:test
+$ docker-compose up -d --build
 ```
 
-To save intermediate files on local storage:
+Stop and remove containers:
 
 ```
-$ docker run -d --rm -v $(pwd)/tmp:/tmp -p 9292:9292 bhxiv-app:test
+$ docker-compose down
 ```
