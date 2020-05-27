@@ -1,64 +1,73 @@
-html lang="en"
+html[lang="en"]
   head
-    title BioHackrXiv preview service
-    link href="/style.css" rel="stylesheet" type="text/css" /
-    link href="/biohackrxiv.css" rel="stylesheet" type="text/css" /
+    title
+      | BioHackrXiv preview service
+    link[rel="stylesheet" href="https://pages-themes.github.io/minimal/assets/css/style.css" type="text/css"]
+    style
+      |  footer { display: none; }
   body
-    header
-      h1
-        a href="http://preview.biohackrxiv.org/"  PDF Generator
-    section.page-body
-      h1 BioHackrXiv preview service
-      .logo
-        a href="https://biohackrxiv.org"
-          img src="/BioHackrXiv-logo-transparent-340x140.png" /
-      p/
-      div
-        | You can use this page to compile your
-        a href="https://biohackrxiv.org"  BioHackrXiv
-        | paper
-        | before submitting. Enter the location of your Git repository that
-        | contains your
-        code paper.md
-        | file in markdown format
-        | and
-        code paper.bib
-        | in BibTex format. For more information on
-        | how to format your paper, please take a look at our
-        a href="https://github.com/biohackrxiv/biohackrxiv.github.io"  journal guidelines
-      form#preview-form accept-charset="UTF-8" action="gen-pdf" method="POST"
-        div
-          | Repository:
-          input#repository name="repository" placeholder="https://github.com/biohackrxiv/submission-templates.git" required="" size="60" /
+    .wrapper
+      header
+        h1
+          a[href="http://preview.biohackrxiv.org/"]
+            | preview.biohackrxiv.org
+        p.view
+          a[href="https://github.com/biohackrxiv"]
+            | View My GitHub Profile
+      section
+        h1
+          | BioHackrXiv preview service
         p
-          | For example paste URL:
-          a href="https://github.com/biohackrxiv/bhxiv-gen-pdf"  https://github.com/biohackrxiv/bhxiv-gen-pdf
-        label for="journal"  Compile paper for:
+          img[src="https://guide.biohackrxiv.org/assets/logo/BioHackrXiv-logo-transparent-340x140.png" alt="BioHackrXiv logo"]
+        p
+
         div
-          radio-group
-            div
-              radio
-                input name="journal" type="radio" value="Japan2018" >/
-                | NBDC/DBCLS BioHackathon, Matsue, Japan, 2018
-            div
-              radio
-                input name="journal" type="radio" value="Japan2019" >/
-                | NBDC/DBCLS BioHackathon, Fukuoka, Japan, 2019
-            div
-              radio
-                input name="journal" type="radio" value="France2019" >/
-                | BioHackathon EUROPE, Paris, France, 2019
-            div
-              radio
-                input checked="1" name="journal" type="radio" value="Covid2020" >/
-                | Virtual BioHackathon Covid-2020
-        div
-          input name="commit" type="submit" value="submit" /
+          |  You can use this page to compile your
+          a[href="https://biohackrxiv.org"]
+            | BioHackrXiv
+          |  paper before submitting. Enter the location of your Git repository that contains your
+          code
+            | paper.md
+          |  file in Markdown format and
+          code
+            | paper.bib
+          |  in BibTeX format. For more information on how to format your paper, please take a look at the
+          a[href="https://guide.biohackrxiv.org"]
+            | journal guidelines
+          | .
+        form#preview-form[action="gen-pdf" accept-charset="UTF-8" method="POST"]
+          div
+            |  Repository:
+            input#repository[name="repository" size="80"]
+          p
+            |  For example paste URL:
+            a[href="https://github.com/biohackrxiv/bhxiv-gen-pdf"]
+              | https://github.com/biohackrxiv/bhxiv-gen-pdf
+          label[for="journal"]
+            |  Compile paper for:
+          div
+            radio-group
+              div
+                radio
+                  input[type="radio" name="journal" value="Japan2018"]
+                  |  NBDC/DBCLS BioHackathon, Matsue, Japan, 2018
+              div
+                radio
+                  input[type="radio" name="journal" value="Japan2019"]
+                  |  NBDC/DBCLS BioHackathon, Fukuoka, Japan, 2019
+              div
+                radio
+                  input[type="radio" name="journal" value="France2019"]
+                  |  BioHackathon EUROPE, Paris, France, 2019
+              div
+                radio
+                  input[type="radio" name="journal" value="Covid2020" checked="1"]
+                  |  Virtual BioHackathon Covid-2020
+          div
+            input[type="submit" name="commit" value="submit"]
       footer
-        hr/
-        .copyright
-          | Source
-          a href="https://github.com/biohackrxiv/bhxiv-gen-pdf/blob/master/web/pdf-web-gen.rkt"  code
-          | by the
-          a href="https://biohackrxiv.org"  BioHackrXiv
-          | team
+        p
+          small
+            | Hosted on GitHub Pages — Theme by
+            a[href="https://github.com/orderedlist"]
+              | orderedlist
