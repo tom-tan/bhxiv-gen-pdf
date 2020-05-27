@@ -6,30 +6,39 @@ class BHXIV < Sinatra::Base
   set :public_folder, 'public'
 
   helpers do
-    def gen_pdf(git_url, journal)
-      # Create tmpdir for this process
-      uuid = SecureRandom.uuid
+    def create_workdir(id)
+      workdir = "/tmp/#{id}"
+      FileUtils.mkdir(workdir)
+      workdir
+    end
 
-      tmpdir_path = "/tmp/#{uuid}"
-      outdir_path = File.dirname(__FILE__) + "/public/papers/#{uuid}"
-      FileUtils.mkdir_p(tmpdir_path)
+    def stage_zipfile(id, zipfile)
+      workdir = create_workdir(id)
+      filepath = zipfile[:tempfile].path
+      system("unzip #{filepath} -d #{workdir}")
+    end
+
+    def stage_gitrepo(git_url)
+      workdir = create_workdir(id)
+      system("git clone #{git_url} #{workdir}/#{File.basename(git_url)}")
+    end
+
+    def create_outdir(id)
+      outdir_path = File.dirname(__FILE__) + "/public/papers/#{id}"
       FileUtils.mkdir_p(outdir_path)
+      outdir_path
+    end
 
-      # Clone repository
-      repo_dest = "#{tmpdir_path}/#{File.basename(git_url)}"
-      system("git clone #{git_url} #{repo_dest}")
-
+    def gen_pdf(id, journal)
       # Find paper.md
-      paper_dir = File.dirname(Dir.glob("#{repo_dest}/**/paper.md").first)
-
-      # Generate pdf
-      pdf_path = "#{tmpdir_path}/paper.pdf"
+      paper_dir = File.dirname(Dir.glob("/tmp/#{id}/**/paper.md").first)
+      # Prepare output dir
+      outdir = create_outdir(id)
+      pdf_path = "#{outdir}/paper.pdf"
+      # Generate
       system("ruby /gen-pdf/bin/gen-pdf #{paper_dir} #{journal} #{pdf_path}")
-
-      # Copy output pdf to public folder
-      FileUtils.cp(pdf_path, outdir_path)
-
-      "/papers/#{uuid}/paper.pdf"
+      # Return pdf_path
+      "/papers/#{id}/paper.pdf"
     end
   end
 
@@ -39,11 +48,22 @@ class BHXIV < Sinatra::Base
 
   post '/gen-pdf' do
     # Get form parameters
-    git_url = params[:repository]
     journal = params[:journal]
+    git_url = params[:repository]
+    zipfile = params[:zipfile]
 
-    if git_url && journal
-      pdf_path = gen_pdf(git_url, journal)
+    pdf_path = if journal
+                 id = SecureRandom.uuid
+                 if zipfile
+                   stage_zipfile(id, zipfile)
+                   gen_pdf(id, journal)
+                 elsif git_url
+                   stage_gitrepo(id, git_url)
+                   gen_pdf(id, journal)
+                 end
+               end
+
+    if pdf_path
       redirect pdf_path
     else
       status 500

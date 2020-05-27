@@ -11,60 +11,73 @@ html[lang="en"]
         h1
           a[href="http://preview.biohackrxiv.org/"]
             | preview.biohackrxiv.org
+        p
+          | Online PDF Generator for BioHackrXiv, an OSF preprint server for BioHackathon-like events in Life Sciences
         p.view
           a[href="https://github.com/biohackrxiv"]
             | View My GitHub Profile
       section
         h1
           | BioHackrXiv preview service
-        p
-          img[src="https://guide.biohackrxiv.org/assets/logo/BioHackrXiv-logo-transparent-340x140.png" alt="BioHackrXiv logo"]
-        p
-
         div
-          |  You can use this page to compile your
-          a[href="https://biohackrxiv.org"]
-            | BioHackrXiv
-          |  paper before submitting. Enter the location of your Git repository that contains your
-          code
-            | paper.md
-          |  file in Markdown format and
-          code
-            | paper.bib
-          |  in BibTeX format. For more information on how to format your paper, please take a look at the
-          a[href="https://guide.biohackrxiv.org"]
-            | journal guidelines
-          | .
-        form#preview-form[action="gen-pdf" accept-charset="UTF-8" method="POST"]
-          div
-            |  Repository:
-            input#repository[name="repository" size="80"]
           p
-            |  For example paste URL:
-            a[href="https://github.com/biohackrxiv/bhxiv-gen-pdf"]
-              | https://github.com/biohackrxiv/bhxiv-gen-pdf
-          label[for="journal"]
-            |  Compile paper for:
-          div
-            radio-group
+            img[src="https://guide.biohackrxiv.org/assets/logo/BioHackrXiv-logo-transparent-340x140.png" alt="BioHackrXiv logo"]
+        div
+          p
+            a[href="https://biohackrxiv.org"]
+              | BioHackrXiv&nbsp;
+            | currently accepts only the manuscripts in PDF format compiled by&nbsp;
+            a[href="https://github.com/biohackrxiv/bhxiv-gen-pdf/"]
+              | BioHackrXiv PDF Generator
+            | . This website provides the online PDF converter which processes a Markdown format file &nbsp;
+            code
+              | paper.md&nbsp;
+            | and BibTeX format file&nbsp;
+            code
+              | paper.bib
+            |  in the given git repository. You can also upload your files in a zip archive. Visit&nbsp;
+            a[href="https://guide.biohackrxiv.org"]
+              | journal guidelines&nbsp;
+            | for more information on manuscript preparation.
+          p
+        div
+          form#preview-form[action="gen-pdf" accept-charset="UTF-8" method="POST" enctype="multipart/form-data"]
+            p
+              |  Repository:
+              input#repository[name="repository" size="80"]
+              |  For example paste URL:&nbsp;
+              a[href="https://github.com/biohackrxiv/bhxiv-gen-pdf"]
+                | https://github.com/biohackrxiv/bhxiv-gen-pdf
+            p
+              |  or choose a zip file of repository:&nbsp;&nbsp;
+              input[type="file" name="zipfile"]
+            label[for="journal"]
+              |  Compile paper for:
+            div
+              radio-group
+                div
+                  radio
+                    input[type="radio" name="journal" value="Japan2018"]
+                    |  NBDC/DBCLS BioHackathon, Matsue, Japan, 2018
+                div
+                  radio
+                    input[type="radio" name="journal" value="Japan2019"]
+                    |  NBDC/DBCLS BioHackathon, Fukuoka, Japan, 2019
+                div
+                  radio
+                    input[type="radio" name="journal" value="France2019"]
+                    |  BioHackathon EUROPE, Paris, France, 2019
+                div
+                  radio
+                    input[type="radio" name="journal" value="Covid2020" checked="1"]
+                    |  Virtual BioHackathon Covid-2020
+            p
               div
-                radio
-                  input[type="radio" name="journal" value="Japan2018"]
-                  |  NBDC/DBCLS BioHackathon, Matsue, Japan, 2018
-              div
-                radio
-                  input[type="radio" name="journal" value="Japan2019"]
-                  |  NBDC/DBCLS BioHackathon, Fukuoka, Japan, 2019
-              div
-                radio
-                  input[type="radio" name="journal" value="France2019"]
-                  |  BioHackathon EUROPE, Paris, France, 2019
-              div
-                radio
-                  input[type="radio" name="journal" value="Covid2020" checked="1"]
-                  |  Virtual BioHackathon Covid-2020
-          div
-            input[type="submit" name="commit" value="submit"]
+                input[type="submit" name="commit" value="Convert"]
+            p
+              | Have an issue?&nbsp;
+              a[href="mailto:biohackrxiv@googlegroups.com"]
+                | Contact us
       footer
         p
           small
