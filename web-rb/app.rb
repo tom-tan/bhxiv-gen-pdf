@@ -22,7 +22,7 @@ class BHXIV < Sinatra::Base
       system("unzip #{filepath} -d #{workdir}")
     end
 
-    def stage_gitrepo(git_url)
+    def stage_gitrepo(id, git_url)
       workdir = create_workdir(id)
       system("git clone #{git_url} #{workdir}/#{File.basename(git_url)}")
     end
