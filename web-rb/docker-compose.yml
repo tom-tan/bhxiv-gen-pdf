@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: dockerfile.app
-    image: biohackrxiv/gen-pdf-app:0.1.0
     container_name: bhxiv-app
     volumes:
       - ${PWD}/tmp:/tmp
