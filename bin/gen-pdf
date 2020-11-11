@@ -41,6 +41,11 @@ rootdir=File.expand_path(File.dirname(File.dirname(__FILE__)))
 resources=rootdir + "/resources/biohackrxiv"
 
 EVENT_TYPE = {
+  "BH20EU": {
+    title: "BioHackathon Europe 2020",
+    URL:   "https\://www.biohackathon-europe.org//",
+    location: "Virtual conference 2020"
+  },
   "BCC2020": {
     title: "Bioinformatics Community Conference 2020 CollaborationFest (CoFest)",
     URL:   "https\://bcc2020.github.io/cofest/",
