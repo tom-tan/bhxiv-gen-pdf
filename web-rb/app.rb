@@ -73,4 +73,8 @@ class BHXIV < Sinatra::Base
       status 500
     end
   end
+
+  get '/list' do
+    "Hello #{params[:name]}!"
+  end
 end

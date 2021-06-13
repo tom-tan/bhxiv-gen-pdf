@@ -4,7 +4,7 @@
 #
 # Usage:   gen-pdf [--debug] dir [target-journal paper.pdf]
 #
-# Example: gen-pdf --debug ./example/paper Japan2019 output.pdf
+# Example: ./bin/gen-pdf --debug ./example/logic Japan2019 output.pdf
 #
 require 'fileutils'
 require 'time'
@@ -110,7 +110,7 @@ Dir.chdir(dir) do
   print `#{cmd2}`
 end
 
-checkfn=dir+outfn
+checkfn=dir+"/"+outfn
 if File.exist?(checkfn)
   print("Generated #{checkfn}")
 else
