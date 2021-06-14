@@ -2,10 +2,14 @@
 #
 # Generate a PDF from markdown input (paper.md) in dir
 #
-# Usage:   gen-pdf [--debug] dir [target-journal paper.pdf]
+# Usage:   gen-pdf [--debug] dir [target-journal] [paper.pdf]
 #
-# Example: ./bin/gen-pdf --debug ./example/logic Japan2019 output.pdf
+# Example: ./bin/gen-pdf ./example/logic Japan2019 output.pdf
+#          ./bin/gen-pdf --debug ./example/logic Japan2019 output.tex
 #
+# Note that combining --debug with PDF output may lead to an error. See
+# https://github.com/jgm/pandoc/issues/5997
+
 require 'fileutils'
 require 'time'
 
@@ -26,7 +30,10 @@ end
 
 outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
-$stderr.print("Generating #{outfn}\n")
+
+outpath=dir + "/" + outfn
+$stderr.print("Generating #{outpath}\n")
+File.unlink(outpath) if File.exist?(outpath)
 
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
@@ -94,25 +101,28 @@ cmd = <<COMMAND
       -V event_title='#{EVENT[:title]}'
       -V event_url='#{EVENT[:URL]}'
       -V event_location='#{EVENT[:location]}'
-      -o '#{outfn}' -V geometry:margin=1in
+      -V geometry:margin=1in
       #{ ( paperbib ? "--filter pandoc-citeproc" : "") }
-      paper.md
       --from markdown+autolink_bare_uris
       --template '#{TEX}'
       --csl=#{CSL}
+      -s
+      --output='#{outfn}'
+      paper.md
 COMMAND
 
 print cmd
 cmd2 = 'pandoc '+cmd.split(/\s*\n\s*/).join(" ")
-p cmd2
 
+print "Change into directory #{dir}\n"
 Dir.chdir(dir) do
+  print "Executing "
+  p cmd2
   print `#{cmd2}`
 end
 
-checkfn=dir+"/"+outfn
-if File.exist?(checkfn)
-  print("Generated #{checkfn}")
+if File.exist?(outpath)
+  print("Generated #{outpath}")
 else
-  print("Failed to generate #{checkfn}!\n")
+  print("Failed to generate #{outpath}!\n")
 end
