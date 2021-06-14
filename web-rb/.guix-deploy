@@ -1,0 +1,7 @@
+# Set up GNU Guix environment to run tooling
+#
+# Test with
+#
+#   ruby ./bin/gen-pdf --debug ./example/logic Japan2019 output.tex
+
+~/opt/guix/bin/guix environment -C guix --ad-hoc ghc-pandoc ghc-pandoc-citeproc ruby nss-certs openssl ghc-pandoc-types texlive-generic-pdftex curl git --network texlive ruby-sinatra ruby-puma ruby-slim less vim ruby-mustermann
