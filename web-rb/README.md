@@ -35,3 +35,9 @@ Puma starting in single mode...
 * Listening on http://0.0.0.0:9292
 
 ```
+
+To run the development version:
+
+```
+puma -t 1 -e development
+```

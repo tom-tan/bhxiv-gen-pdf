@@ -4,7 +4,14 @@ require 'securerandom'
 
 configure {
   set :server, :puma
+  set :show_exceptions, true
+  set :environment, :development
+  set :logging, :true
 }
+
+def system_log(cmd)
+  $stderr.print("Invoking: #{cmd}\n")
+end
 
 class BHXIV < Sinatra::Base
   set :public_folder, 'public'
@@ -19,12 +26,12 @@ class BHXIV < Sinatra::Base
     def stage_zipfile(id, zipfile)
       workdir = create_workdir(id)
       filepath = zipfile[:tempfile].path
-      system("unzip #{filepath} -d #{workdir}")
+      system_log("unzip #{filepath} -d #{workdir}")
     end
 
     def stage_gitrepo(id, git_url)
       workdir = create_workdir(id)
-      system("git clone #{git_url} #{workdir}/#{File.basename(git_url)}")
+      system_log("git clone #{git_url} #{workdir}/#{File.basename(git_url)}")
     end
 
     def create_outdir(id)
@@ -40,7 +47,7 @@ class BHXIV < Sinatra::Base
       outdir = create_outdir(id)
       pdf_path = "#{outdir}/paper.pdf"
       # Generate
-      system("ruby /gen-pdf/bin/gen-pdf #{paper_dir} #{journal} #{pdf_path}")
+      system_log("ruby /gen-pdf/bin/gen-pdf #{paper_dir} #{journal} #{pdf_path}")
       # Return pdf_path
       "/papers/#{id}/paper.pdf"
     end
