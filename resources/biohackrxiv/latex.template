@@ -109,8 +109,6 @@
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
 
-% \fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $citation_author$, ($year$). $title$. \textit{$journal_name$}, $volume$($issue$), $page$. \url{https://doi.org/$formatted_doi$}}}}
-
 \fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $authors_short$, $title_short$ ($year$). {\href{$journal_url$}{$journal_name$}}}}}
 %      \textit{\url{$journal_url$}{$journal_name$}}}}
 
