@@ -78,6 +78,11 @@ EVENT_TYPE = {
     URL:   "http\://2018.biohackathon.org/",
     location: "Matsue, Japan, 2018"
   },
+  "Other": {
+    title: "Other BioHackathon",
+    URL:   "https\://github.com/virtual-biohackathons/",
+    location: "Other"
+  },
 }
 
 EVENT=EVENT_TYPE[bioh.to_sym]
