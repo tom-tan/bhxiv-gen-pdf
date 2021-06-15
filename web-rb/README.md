@@ -41,3 +41,10 @@ To run the development version:
 ```
 puma -t 1 -e development
 ```
+
+or for more info
+
+```
+puma -t 1 -e development --redirect-stderr /dev/stdout \
+  --redirect-stdout /dev/stdout -w 0 -v
+```

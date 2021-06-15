@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'slim'
 require 'securerandom'
+require 'logger'
+
+$logger = Logger.new(STDOUT)
+$logger.level = Logger::DEBUG
 
 configure {
   set :server, :puma
@@ -10,7 +14,9 @@ configure {
 }
 
 def system_log(cmd)
-  $stderr.print("Invoking: #{cmd}\n")
+  $logger.debug("Invoking: #{cmd}\n")
+  result = `#{cmd}`
+  $logger.debug(result)
 end
 
 class BHXIV < Sinatra::Base
@@ -42,23 +48,29 @@ class BHXIV < Sinatra::Base
 
     def gen_pdf(id, journal)
       # Find paper.md
-      paper_dir = File.dirname(Dir.glob("/tmp/#{id}/**/paper.md").first)
+      glob = "/tmp/#{id}/**/paper.md"
+      $logger.debug(glob)
+      paper_dir = File.dirname(Dir.glob(glob).first)
       # Prepare output dir
       outdir = create_outdir(id)
       pdf_path = "#{outdir}/paper.pdf"
       # Generate
-      system_log("ruby /gen-pdf/bin/gen-pdf #{paper_dir} #{journal} #{pdf_path}")
-      # Return pdf_path
+      system_log("ruby ../bin/gen-pdf #{paper_dir} #{journal} #{pdf_path}")
+      # Return pdf_path      "/papers/#{id}/paper.pdf"
       "/papers/#{id}/paper.pdf"
     end
   end
 
   get '/' do
+    # $logger.info('some info')
+    # $logger.error('some error')
+    # $stderr.print("HELLO\n")
     slim :index
   end
 
   post '/gen-pdf' do
     # Get form parameters
+    $logger.debug(params)
     journal = params[:journal]
     git_url = params[:repository]
     zipfile = params[:zipfile]

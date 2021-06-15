@@ -31,9 +31,8 @@ end
 outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
 
-outpath=dir + "/" + outfn
-$stderr.print("Generating #{outpath}\n")
-File.unlink(outpath) if File.exist?(outpath)
+$stderr.print("Generating #{outfn}\n")
+File.unlink(outfn) if File.exist?(outfn)
 
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
@@ -126,8 +125,8 @@ Dir.chdir(dir) do
   print `#{cmd2}`
 end
 
-if File.exist?(outpath)
-  print("Generated #{outpath}")
+if File.exist?(outfn)
+  print("Generated #{outfn}")
 else
-  print("Failed to generate #{outpath}!\n")
+  print("Failed to generate #{outfn}!\n")
 end
