@@ -15,8 +15,13 @@ configure {
 
 def system_log(cmd)
   $logger.debug("Invoking: #{cmd}\n")
-  result = `#{cmd}`
-  $logger.debug(result)
+  result = `#{cmd} 2>&1`
+  status = $?.exitstatus
+  result2 = result.force_encoding('utf-8')
+  $logger.debug(result2)
+  if status!=0
+    raise("Failed to run command: "+result2)
+  end
 end
 
 class BHXIV < Sinatra::Base
@@ -37,7 +42,7 @@ class BHXIV < Sinatra::Base
 
     def stage_gitrepo(id, git_url)
       workdir = create_workdir(id)
-      system_log("git clone #{git_url} #{workdir}/#{File.basename(git_url)}")
+      system_log("git clone -c core.askPass=echo #{git_url} #{workdir}/#{File.basename(git_url)}")
     end
 
     def create_outdir(id)
@@ -50,7 +55,11 @@ class BHXIV < Sinatra::Base
       # Find paper.md
       glob = "/tmp/#{id}/**/paper.md"
       $logger.debug(glob)
-      paper_dir = File.dirname(Dir.glob(glob).first)
+      files = Dir.glob(glob)
+      if files.size < 1
+        raise "Can not find a paper.md in directory structure!"
+      end
+      paper_dir = File.dirname(files.first)
       # Prepare output dir
       outdir = create_outdir(id)
       pdf_path = "#{outdir}/paper.pdf"

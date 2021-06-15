@@ -135,6 +135,7 @@ Dir.chdir(dir) do
       print("Generated #{outfn}!\n")
     else
       print("Failed to generate #{outfn}!\n")
+      exit(2)
     end
   end
 end
