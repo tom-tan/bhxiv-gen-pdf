@@ -1,7 +1,16 @@
 # Set up GNU Guix environment to run tooling
 #
-# Test with
+# check out Guix channel
 #
-#   ruby ./bin/gen-pdf --debug ./example/logic Japan2019 output.tex
+#   cd $HOME 
+#   git clone https://git.genenetwork.org/guix-bioinformatics/guix-update-channel
+#
+# set PATHs with something like 
+#
+#   export PATH=~/opt/guix/bin:$PATH
+#   export GUIX_PACKAGE_PATH=$HOME/guix-update-channel
+#
 
-~/opt/guix/bin/guix environment -C guix --ad-hoc ghc-pandoc ghc-pandoc-citeproc ruby@2.6.5 nss-certs openssl ghc-pandoc-types texlive-generic-pdftex curl git --network texlive ruby-sinatra ruby-puma ruby-slim less vim ruby-mustermann bundler ruby-nio4r
+guix environment -C guix --ad-hoc ghc-pandoc ghc-pandoc-citeproc ruby@2.6.5 nss-certs openssl ghc-pandoc-types texlive-generic-pdftex curl git --network texlive ruby-sinatra ruby-puma ruby-slim less vim ruby-mustermann bundler ruby-nio4r
+
+# Start puma (see README)

@@ -1,7 +1,15 @@
 # Set up GNU Guix environment to run the command line tooling
 #
+# set path with something like 
+#
+#   export PATH=~/opt/guix/bin:$PATH
+#
+# and
+
+guix environment -C guix --ad-hoc ghc-pandoc ghc-pandoc-citeproc ruby nss-certs openssl ghc-pandoc-types texlive-generic-pdftex curl git --network texlive less vim
+
 # Test with
 #
 #   ruby ./bin/gen-pdf --debug ./example/logic Japan2019 output.tex
+#
 
-guix environment -C guix --ad-hoc ghc-pandoc ghc-pandoc-citeproc ruby nss-certs openssl ghc-pandoc-types texlive-generic-pdftex curl git --network texlive less vim

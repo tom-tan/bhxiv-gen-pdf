@@ -32,7 +32,9 @@ outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
 
 $stderr.print("Generating #{outfn}\n")
-File.unlink(outfn) if File.exist?(outfn)
+Dir.chdir(dir) do
+  File.unlink(outfn) if File.exist?(outfn)
+end
 
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
@@ -123,10 +125,16 @@ Dir.chdir(dir) do
   print "Executing "
   p cmd2
   print `#{cmd2}`
-end
-
-if File.exist?(outfn)
-  print("Generated #{outfn}")
-else
-  print("Failed to generate #{outfn}!\n")
+  if File.exist?(outfn)
+    print("Generated #{outfn}!\n")
+  else
+    # this is a bit odd, but when no path is supplied we need to get
+    # the local path
+    outfn2 = Dir.pwd+"/"+outfn
+    if File.exist?(outfn2)
+      print("Generated #{outfn}!\n")
+    else
+      print("Failed to generate #{outfn}!\n")
+    end
+  end
 end
