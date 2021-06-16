@@ -13,6 +13,9 @@ configure {
   set :logging, :true
 }
 
+class CommandError < StandardError
+end
+
 def system_log(cmd)
   $logger.debug("Invoking: #{cmd}\n")
   result = `#{cmd} 2>&1`
@@ -20,7 +23,7 @@ def system_log(cmd)
   result2 = result.force_encoding('utf-8')
   $logger.debug(result2)
   if status!=0
-    raise("Failed to run command: "+result2)
+    raise CommandError, "Failed to run command: "+result2
   end
 end
 
@@ -57,7 +60,7 @@ class BHXIV < Sinatra::Base
       $logger.debug(glob)
       files = Dir.glob(glob)
       if files.size < 1
-        raise "Can not find a paper.md in directory structure!"
+        raise CommandErorr, "Can not find a paper.md in directory structure!"
       end
       paper_dir = File.dirname(files.first)
       # Prepare output dir
@@ -70,10 +73,18 @@ class BHXIV < Sinatra::Base
     end
   end
 
+  error CommandError do
+    # 'Sorry there was a nasty error - ' + env['sinatra.error'].message
+    @error_msg = env['sinatra.error'].message
+    slim :error
+  end
+
+  error do
+    'Server error: ' + env['sinatra.error'].message
+  end
+
   get '/' do
-    # $logger.info('some info')
-    # $logger.error('some error')
-    # $stderr.print("HELLO\n")
+    # raise CommandError, "TESTING ERRORS!\nHello"
     slim :index
   end
 
