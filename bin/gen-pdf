@@ -2,10 +2,14 @@
 #
 # Generate a PDF from markdown input (paper.md) in dir
 #
-# Usage:   gen-pdf [--debug] dir [target-journal paper.pdf]
+# Usage:   gen-pdf [--debug] dir [target-journal] [paper.pdf]
 #
-# Example: gen-pdf --debug ./example/paper Japan2019 output.pdf
+# Example: ./bin/gen-pdf ./example/logic Japan2019 output.pdf
+#          ./bin/gen-pdf --debug ./example/logic Japan2019 output.tex
 #
+# Note that combining --debug with PDF output may lead to an error. See
+# https://github.com/jgm/pandoc/issues/5997
+
 require 'fileutils'
 require 'time'
 
@@ -26,7 +30,11 @@ end
 
 outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
+
 $stderr.print("Generating #{outfn}\n")
+Dir.chdir(dir) do
+  File.unlink(outfn) if File.exist?(outfn)
+end
 
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
@@ -71,6 +79,11 @@ EVENT_TYPE = {
     URL:   "http\://2018.biohackathon.org/",
     location: "Matsue, Japan, 2018"
   },
+  "Other": {
+    title: "Other BioHackathon",
+    URL:   "https\://github.com/virtual-biohackathons/",
+    location: "Other"
+  },
 }
 
 EVENT=EVENT_TYPE[bioh.to_sym]
@@ -94,25 +107,35 @@ cmd = <<COMMAND
       -V event_title='#{EVENT[:title]}'
       -V event_url='#{EVENT[:URL]}'
       -V event_location='#{EVENT[:location]}'
-      -o '#{outfn}' -V geometry:margin=1in
+      -V geometry:margin=1in
       #{ ( paperbib ? "--filter pandoc-citeproc" : "") }
-      paper.md
       --from markdown+autolink_bare_uris
       --template '#{TEX}'
       --csl=#{CSL}
+      -s
+      --output='#{outfn}'
+      paper.md
 COMMAND
 
 print cmd
 cmd2 = 'pandoc '+cmd.split(/\s*\n\s*/).join(" ")
-p cmd2
 
+print "Change into directory #{dir}\n"
 Dir.chdir(dir) do
+  print "Executing "
+  p cmd2
   print `#{cmd2}`
-end
-
-checkfn=dir+outfn
-if File.exist?(checkfn)
-  print("Generated #{checkfn}")
-else
-  print("Failed to generate #{checkfn}!\n")
+  if File.exist?(outfn)
+    print("Generated #{outfn}!\n")
+  else
+    # this is a bit odd, but when no path is supplied we need to get
+    # the local path
+    outfn2 = Dir.pwd+"/"+outfn
+    if File.exist?(outfn2)
+      print("Generated #{outfn}!\n")
+    else
+      print("Failed to generate #{outfn}!\n")
+      exit(2)
+    end
+  end
 end

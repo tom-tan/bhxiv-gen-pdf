@@ -156,7 +156,7 @@ with a binary \
 `has_mouse_ortholog` predicate:
 
 ```
-    feature_in_range(grch38:’X’, 10000000, 20000000, HumanGene),
+    feature_in_range(grch38:"X", 10000000, 20000000, HumanGene),
     has_mouse_ortholog(HumanGene, MouseGene)
 ```
 
@@ -165,7 +165,7 @@ This will compile down to a more complex SPARQL query, and execute it against a 
 SPARQLProg now includes bindings for many common biological SPARQL
 endpoints. As part of this hackathon we developed codes to access RDF
 databases of MBGD [@Chiba:2015], KEGG OC, TogoVar, JCM, Allie, EBI
-BioSamples, UniProt, and DisGeNET [@Queralt:2016]. Future work includes using these
+ BioSamples, UniProt, and DisGeNET [@Queralt:2016]. Future work includes using these
 Prolog codes as building blocks for integrative analysis.
 
 ## Extending the Biolink Model

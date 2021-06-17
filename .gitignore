@@ -3,6 +3,7 @@
 *.lof
 *.log
 *.lot
+*.tex
 *.fls
 *.out
 *.toc
@@ -11,6 +12,8 @@
 *.cb
 *.cb2
 .*.lb
+*~
+Gemfile.lock 
 
 ## Intermediate documents:
 *.dvi

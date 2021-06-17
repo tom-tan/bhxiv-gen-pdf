@@ -47,6 +47,10 @@ Build docker container and run
 
 Note that the current working directory of host machine is mounted on `/work` inside the container
 
+# Run via GNU Guix
+
+The [guix-deploy](./.guix-deploy) starts a Guix container.
+
 # Trouble shooting
 
 On some systems you may need to explitely add ruby
