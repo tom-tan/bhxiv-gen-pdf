@@ -10,8 +10,12 @@
 # Note that combining --debug with PDF output may lead to an error. See
 # https://github.com/jgm/pandoc/issues/5997
 
+rootpath = File.dirname(File.dirname(__FILE__))
+$: << File.join(rootpath,'lib')
+
 require 'fileutils'
 require 'time'
+require 'bhxiv/markdown' # QC methods for YAML header
 
 p ARGV
 
