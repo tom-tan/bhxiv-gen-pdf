@@ -43,6 +43,8 @@ end
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
 
+paper_meta = md_checker(papermd)
+
 paperbib = dir + "/" + "paper.bib"
 if not File.exist?(paperbib)
   $stderr.print "WARNING: can not find bibtex file #{paperbib}\n"
