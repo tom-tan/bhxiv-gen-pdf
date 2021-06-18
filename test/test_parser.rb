@@ -11,6 +11,8 @@ class TestParser < MiniTest::Test
   def test_yaml_valid
     yml = md_parser('test/data/yaml1.md')
     assert yml['title'] == "Logic Programming for the Biomedical Sciences"
+    yml = md_parser('test/data/other.md')
+    assert yml['biohackathon_name'] == "My biohackathon"
   end
 
   def test_yaml_complete
