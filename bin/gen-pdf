@@ -10,6 +10,10 @@
 # Note that combining --debug with PDF output may lead to an error. See
 # https://github.com/jgm/pandoc/issues/5997
 
+class GenPdfError < StandardError
+end
+
+
 rootpath = File.dirname(File.dirname(__FILE__))
 $: << File.join(rootpath,'lib')
 
@@ -31,6 +35,7 @@ bioh=ARGV.shift
 if not bioh
   bioh= "Covid2020" # default
 end
+event = bioh.to_sym
 
 outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
@@ -43,7 +48,9 @@ end
 papermd = dir + "/" + "paper.md"
 raise "Can not find markdown file #{papermd}" if not File.exist?(papermd)
 
-paper_meta = md_checker(papermd)
+header = md_parser(papermd)
+meta = meta_expand(header,event)
+md_meta_checker(meta)
 
 paperbib = dir + "/" + "paper.bib"
 if not File.exist?(paperbib)
@@ -85,14 +92,20 @@ EVENT_TYPE = {
     URL:   "http\://2018.biohackathon.org/",
     location: "Matsue, Japan, 2018"
   },
-  "Other": {
-    title: "Other BioHackathon",
-    URL:   "https\://github.com/virtual-biohackathons/",
-    location: "Other"
-  },
 }
 
-EVENT=EVENT_TYPE[bioh.to_sym]
+raise GenPdfError,"event undefined" if not event
+EVENT =
+  if event == :Other
+    { title: meta['biohackathon_name'],
+      URL:   meta['biohackathon_url'],
+      location: meta['biohackathon_location']
+    }
+  else
+    EVENT_TYPE[bioh.to_sym]
+  end
+# p EVENT
+# exit
 JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'
 JOURNAL_URL='https://biohackrxiv.org/'

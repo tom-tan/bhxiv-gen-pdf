@@ -10,20 +10,30 @@ def md_parser fn
   yml
 end
 
-def md_meta_checker(yml)
-  raise MarkdownError,"title field is missing" if not yml["title"]
-  raise MarkdownError,"tags field is missing" if not yml["tags"]
-  raise MarkdownError,"authors field is missing" if not yml["authors"]
-  raise MarkdownError,"not enough authors (2 minimum)" if yml["authors"].length < 2
-  raise MarkdownError,"group field is missing" if not yml["group"]
-  raise MarkdownError,"date field is missing" if not yml["date"]
-  raise MarkdownError,"bibliography field is missing" if not yml["bibliography"]
-  raise MarkdownError,"event field is missing" if not yml["event"]
-  raise MarkdownError,"authors_short field is missing" if not yml["authors_short"]
-  yml
+def meta_expand(header,event)
+  meta = header
+  p header
+  if event == :Other
+    raise MarkdownError,"biohackathon_name field is missing for 'Other'" if not header["biohackathon_name"]
+    raise MarkdownError,"biohackathon_url field is missing for 'Other'" if not header["biohackathon_url"]
+    raise MarkdownError,"biohackathon_location field is missing for 'Other'" if not header["biohackathon_location"]
+  end
+end
+
+def md_meta_checker(meta)
+  raise MarkdownError,"title field is missing" if not meta["title"]
+  raise MarkdownError,"tags field is missing" if not meta["tags"]
+  raise MarkdownError,"authors field is missing" if not meta["authors"]
+  raise MarkdownError,"not enough authors (2 minimum)" if meta["authors"].length < 2
+  raise MarkdownError,"group field is missing" if not meta["group"]
+  raise MarkdownError,"date field is missing" if not meta["date"]
+  raise MarkdownError,"bibliography field is missing" if not meta["bibliography"]
+  raise MarkdownError,"event field is missing" if not meta["event"]
+  raise MarkdownError,"authors_short field is missing" if not meta["authors_short"]
+  meta
 end
 
 def md_checker fn
-  yml = md_parser(fn)
-  md_meta_checker(yml)
+  header = md_parser(fn)
+  md_meta_checker(header)
 end

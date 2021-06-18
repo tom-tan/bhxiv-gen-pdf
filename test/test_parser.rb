@@ -16,4 +16,18 @@ class TestParser < MiniTest::Test
   def test_yaml_complete
     md_checker('test/data/yaml1.md')
   end
+
+  def test_yaml_other_empty
+    header = md_parser('test/data/yaml1.md')
+    assert_raises MarkdownError do
+      meta = meta_expand(header,:Other)
+    end
+    # md_meta_checker(meta)
+  end
+
+  def test_yaml_other
+    header = md_parser('test/data/other.md')
+    meta = meta_expand(header,:Other)
+    md_meta_checker(meta)
+  end
 end
