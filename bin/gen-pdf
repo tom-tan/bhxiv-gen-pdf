@@ -61,6 +61,10 @@ end
 rootdir=File.expand_path(File.dirname(File.dirname(__FILE__)))
 resources=rootdir + "/resources/biohackrxiv"
 
+# EVENT_TYPE expands the metadata used for generating the PDF. A special
+# type is "Other" which is expanded using the metadata from the document
+# itself, see metadata.rb
+
 EVENT_TYPE = {
   "BH20EU": {
     title: "BioHackathon Europe 2020",
@@ -92,6 +96,7 @@ EVENT_TYPE = {
     URL:   "http\://2018.biohackathon.org/",
     location: "Matsue, Japan, 2018"
   },
+  "Other": nil # reserved. See metadata.rb
 }
 
 raise GenPdfError,"event undefined" if not event
