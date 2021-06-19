@@ -11,8 +11,6 @@ class TestParser < MiniTest::Test
   def test_yaml_valid
     yml = md_parser('test/data/yaml1.md')
     assert yml['title'] == "Logic Programming for the Biomedical Sciences"
-    yml = md_parser('test/data/other.md')
-    assert yml['biohackathon_name'] == "My biohackathon"
   end
 
   def test_yaml_complete
@@ -30,6 +28,8 @@ class TestParser < MiniTest::Test
   def test_yaml_other
     header = md_parser('test/data/other.md')
     meta = meta_expand(header,:Other)
+    # p meta
     md_meta_checker(meta)
+    assert meta['biohackathon_name'] == "My biohackathon"
   end
 end
