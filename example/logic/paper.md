@@ -40,9 +40,13 @@ affiliations:
 date: 3 March 2020
 bibliography: paper.bib
 event: Fukuoka2019
+biohackathon_name: "NBDC/DBCLS BioHackathon - Other"
+biohackathon_url:   "http://2019.biohackathon.org/"
+biohackathon_location: "Fukuoka, Japan, 2019"
 group: Logic programming group
 authors_short: Chris Mungall & Hirokazu Chiba \emph{et al.}
 ---
+
 
 <!--
 

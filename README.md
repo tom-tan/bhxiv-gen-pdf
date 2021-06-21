@@ -28,7 +28,7 @@ Generate the PDF with
     ./bin/gen-pdf [dir] [bioh]
 
 where *dir* points to a directory where paper.md and paper.bib reside
-and *bioh* refers to the event. Events are
+and *bioh* refers to the event. Example events (for a full list see ./bin/gen-pdf):
 
     "Japan2019", "France2019", "Covid2020"
 
@@ -49,10 +49,11 @@ Note that the current working directory of host machine is mounted on `/work` in
 
 # Run via GNU Guix
 
-The [guix-deploy](./.guix-deploy) starts a Guix container.
+The [guix-deploy](./.guix-deploy) starts a Guix container which allows running
+the generator and tests.
 
 # Trouble shooting
 
-On some systems you may need to explitely add ruby
+If you are not useing Docker or Guix you may need to explicitely add ruby
 
     ruby bin/gen-pdf [dir]
