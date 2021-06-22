@@ -60,7 +60,7 @@ class BHXIV < Sinatra::Base
       $logger.debug(glob)
       files = Dir.glob(glob)
       if files.size < 1
-        raise CommandErorr, "Can not find a paper.md in directory structure!"
+        raise CommandError, "Can not find a paper.md in directory structure!"
       end
       paper_dir = File.dirname(files.first)
       # Prepare output dir
