@@ -8,9 +8,9 @@ RUN apt-get update -y && \
       texlive-fonts-extra=2018.20190227-2 \
       texlive-latex-extra=2018.20190227-2 \
       texlive-bibtex-extra=2018.20190227-2
-RUN git clone "https://github.com/inutano/bhxiv-gen-pdf" --depth 1 /gen-pdf
-COPY . /app/
-WORKDIR /app
+RUN git clone "https://github.com/inutano/bhxiv-gen-pdf" --depth 1 /app
+COPY . /app/web-rb
+WORKDIR /app/web-rb
 RUN bundle install
 EXPOSE 9292
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
