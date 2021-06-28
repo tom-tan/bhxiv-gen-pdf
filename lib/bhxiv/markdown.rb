@@ -31,6 +31,7 @@ def md_meta_checker(meta)
   raise MarkdownError,"group field is missing" if not meta["group"]
   raise MarkdownError,"date field is missing" if not meta["date"]
   raise MarkdownError,"bibliography field is missing" if not meta["bibliography"]
+  raise MarkdownError,"paper_git_url field is missing" if not meta["paper_git_url"]
   raise MarkdownError,"event field is missing" if not meta["event"]
   raise MarkdownError,"authors_short field is missing" if not meta["authors_short"]
   meta
