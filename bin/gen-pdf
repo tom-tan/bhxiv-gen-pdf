@@ -66,6 +66,11 @@ resources=rootdir + "/resources/biohackrxiv"
 # itself, see metadata.rb
 
 EVENT_TYPE = {
+  "BH21EU": {
+    title: "BioHackathon Europe 2021",
+    URL:   "https\://www.biohackathon-europe.org//",
+    location: "Barcelona, Spain, 2021"
+  },
   "BH20EU": {
     title: "BioHackathon Europe 2020",
     URL:   "https\://www.biohackathon-europe.org//",
