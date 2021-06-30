@@ -29,4 +29,13 @@ class TestGenerator < MiniTest::Test
     status = $?.exitstatus
     assert_equal 0,status
   end
+
+  def test_gen_pdf_url
+    # note we can not use the --debug switch here
+    cmd = "ruby ./bin/gen-pdf ./example/logic/ Japan2019 paper_url.pdf https://github.com/biohackrxiv/bhxiv-gen-pdf"
+    print cmd,"\n"
+    print `#{cmd}`
+    status = $?.exitstatus
+    assert_equal 0,status
+  end
 end

@@ -408,8 +408,11 @@ $endif$
   {\bfseries BioHackathon series:} \\
   \href{$event_url$}{\color{linky}{$event_title$}} \\
        {$event_location$} \\
-       \emph{$group$} \\
 
+  % \vspace{2mm}
+
+  % {\bfseries Group:} \\
+    \emph{\href{$git_url$}{$group$}} \\
 
   \vspace{2mm}
 
@@ -425,8 +428,9 @@ $endif$
   {\bfseries Submitted:} $submitted$
   %  {\bfseries Published:} $published$
 
+
   \vspace{2mm}
-  {\bfseries License}\\
+  {\bfseries License:}\\
   Authors retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{https://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC-BY}}).
 
   \vspace{4mm}

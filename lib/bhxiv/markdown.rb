@@ -31,10 +31,6 @@ def md_meta_checker(meta)
   raise MarkdownError,"group field is missing" if not meta["group"]
   raise MarkdownError,"date field is missing" if not meta["date"]
   raise MarkdownError,"bibliography field is missing" if not meta["bibliography"]
-  # raise MarkdownError,"url field for paper.md is missing" if not meta["url"]
-  # if meta['url'] !~ /paper\.md$/
-  #   raise MarkdownError,"url field is not pointing to paper.md"
-  # end
   raise MarkdownError,"event field is missing" if not meta["event"]
   raise MarkdownError,"authors_short field is missing" if not meta["authors_short"]
   meta

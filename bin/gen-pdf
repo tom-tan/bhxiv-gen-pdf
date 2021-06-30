@@ -2,7 +2,7 @@
 #
 # Generate a PDF from markdown input (paper.md) in dir
 #
-# Usage:   gen-pdf [--debug] dir [target-journal] [paper.pdf]
+# Usage:   gen-pdf [--debug] dir [event] [paper.pdf] [git-url]
 #
 # Example: ./bin/gen-pdf ./example/logic Japan2019 output.pdf
 #          ./bin/gen-pdf --debug ./example/logic Japan2019 output.tex
@@ -12,7 +12,6 @@
 
 class GenPdfError < StandardError
 end
-
 
 rootpath = File.dirname(File.dirname(__FILE__))
 $: << File.join(rootpath,'lib')
@@ -39,6 +38,8 @@ event = bioh.to_sym
 
 outfn=ARGV.shift
 outfn="paper.pdf" if not outfn
+
+git_url=ARGV.shift # optional URL passed in by web app
 
 $stderr.print("Generating #{outfn}\n")
 Dir.chdir(dir) do
@@ -115,7 +116,11 @@ EVENT =
     EVENT_TYPE[bioh.to_sym]
   end
 # p EVENT
-# exit
+# Plug things in that are not on command line
+
+git_url = meta['git_url'] if not git_url and meta.has_key?('git_url')
+raise GenPdfError "git_url is undefined in metadata" if not git_url
+
 JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'
 JOURNAL_URL='https://biohackrxiv.org/'
@@ -133,6 +138,7 @@ cmd = <<COMMAND
       -V logo_path='#{JOURNAL_LOGO}'
       -V year='#{time.year}'
       -V submitted='#{date}'
+      -V git_url='#{git_url}'
       -V event_title='#{EVENT[:title]}'
       -V event_url='#{EVENT[:URL]}'
       -V event_location='#{EVENT[:location]}'
