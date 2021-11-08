@@ -21,7 +21,6 @@ authors:
   - name: Deepak Unni
     affiliation: 5
     orcid: 0000-0002-3583-7340
-    affiliation: 1
   - name: <nobr>William&nbsp;E.&nbsp;Byrd</nobr>
     affiliation: 6
 affiliations:
