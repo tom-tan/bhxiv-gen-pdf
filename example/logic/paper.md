@@ -37,7 +37,7 @@ affiliations:
   - name: University of Alabama at Birmingham, USA
     index: 6
 date: 3 March 2020
-bibliography: paper.bib
+cito-bibliography: paper.bib
 event: Fukuoka2019
 biohackathon_name: "NBDC/DBCLS BioHackathon"
 biohackathon_url:   "http://2019.biohackathon.org/"
@@ -76,7 +76,7 @@ language that has its roots in first-order logic or first-order
 predicate calculus.  Another example, miniKanren, is an embedded
 Domain Specific Language for logic programming. Core miniKanren is
 exceptionally simple, with only three logical operators and one
-interface operator [@reasoned2nd].
+interface operator [@uses_method_in:reasoned2nd].
 
 ![Logic programming resolver traverses the solution space to find all matches \label{fig}](./logic-programming.png)
 
@@ -93,7 +93,7 @@ representing unknown information.  The logic engine then goes through
 the solution space (all data) to find possible matches (see figure
 \ref{fig}). Much more detail on the rationale and implementations of
 miniKanren and logic programming are well summarized in Byrd's book
-\emph{The Reasoned Schemer, Second Edition} [@reasoned2nd], PhD thesis
+\emph{The Reasoned Schemer, Second Edition} [@uses_method_in:reasoned2nd], PhD thesis
 [@ByrdPhD], and [online](https://www.youtube.com/watch?v=eQL48qYDwp4)
 [talks](https://www.youtube.com/watch?v=o3AHnyEf7IE).
 
@@ -144,7 +144,7 @@ format, supporting SPARQL access---for example,
 SPARQL provides a subset of what logic programming can do.
 However, SPARQL queries lack the property of composability and there is no way to
 reuse modular components across queries.  For example, to execute a
-range query on a genomic region using the FALDO model [@Bolleman:2016]
+range query on a genomic region using the FALDO model [@Bolleman2016]
 requires authoring a complex query over many triples. If we then wish
 to reuse parts of that query in a more complex query, we have to
 manually compose them together.
@@ -171,8 +171,8 @@ This will compile down to a more complex SPARQL query, and execute it against a 
 
 SPARQLProg now includes bindings for many common biological SPARQL
 endpoints. As part of this hackathon we developed codes to access RDF
-databases of MBGD [@Chiba:2015], KEGG OC, TogoVar, JCM, Allie, EBI
- BioSamples, UniProt, and DisGeNET [@Queralt:2016]. Future work includes using these
+databases of MBGD [@Chiba2015], KEGG OC, TogoVar, JCM, Allie, EBI
+ BioSamples, UniProt, and DisGeNET [@Queralt2016]. Future work includes using these
 Prolog codes as building blocks for integrative analysis.
 
 ## Extending the Biolink Model
