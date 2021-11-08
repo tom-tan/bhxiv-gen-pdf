@@ -125,7 +125,9 @@ JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'
 JOURNAL_URL='https://biohackrxiv.org/'
 TEX=resources + "/latex.template"
-CSL=resources + "/apa.csl"
+CSL=resources + "/biohackrxiv.csl"
+EXTRACT_CITO=resources + "/filters/extract-cito.lua"
+INSERT_CITO=resources + "/filters/insert-cito-in-ref.lua"
 JOURNAL_LOGO=resources + "/logo.png"
 
 time = Time.new
@@ -146,7 +148,9 @@ cmd = <<COMMAND
       --from markdown+autolink_bare_uris
       --template '#{TEX}'
       --csl=#{CSL}
+      --lua-filter='#{EXTRACT_CITO}'
       #{ ( paperbib ? "--citeproc" : "") }
+      --lua-filter='#{INSERT_CITO}'
       -s
       --output='#{outfn}'
       paper.md
