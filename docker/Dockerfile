@@ -7,7 +7,8 @@ RUN apt-get update -y && \
       texlive-fonts-recommended=2018.20190227-2 \
       texlive-fonts-extra=2018.20190227-2 \
       texlive-latex-extra=2018.20190227-2 \
-      texlive-bibtex-extra=2018.20190227-2
+      texlive-bibtex-extra=2018.20190227-2 \
+      librsvg2-bin
 ADD ./bin /gen-pdf/bin
 ADD ./lib /gen-pdf/lib
 ADD ./resources /gen-pdf/resources
