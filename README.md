@@ -54,6 +54,6 @@ the generator and tests.
 
 # Trouble shooting
 
-If you are not useing Docker or Guix you may need to explicitely add ruby
+If you are not using Docker or Guix you may need to explicitely add ruby
 
     ruby bin/gen-pdf [dir]
