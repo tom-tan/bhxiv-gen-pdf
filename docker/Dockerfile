@@ -9,6 +9,7 @@ RUN apt-get update -y && \
       texlive-latex-extra=2018.20190227-2 \
       texlive-bibtex-extra=2018.20190227-2
 ADD ./bin /gen-pdf/bin
+ADD ./lib /gen-pdf/lib
 ADD ./resources /gen-pdf/resources
 ENV PATH /gen-pdf/bin:$PATH
 CMD ["bash"]
