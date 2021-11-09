@@ -6,7 +6,10 @@
 #
 # and
 
-guix environment -C guix --ad-hoc ghc-pandoc ghc-pandoc-citeproc ruby nss-certs openssl ghc-pandoc-types texlive-generic-pdftex curl git --network texlive less vim
+echo Test with:
+echo ruby ./bin/gen-pdf --debug ./example/logic Japan2019 
+
+guix environment -C guix --network --ad-hoc texlive ghc-pandoc ghc-citeproc ghc-pandoc-types ruby nss-certs openssl curl git less vim 
 
 # Test with
 #

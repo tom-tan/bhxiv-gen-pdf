@@ -143,14 +143,15 @@ cmd = <<COMMAND
       -V event_url='#{EVENT[:URL]}'
       -V event_location='#{EVENT[:location]}'
       -V geometry:margin=1in
-      #{ ( paperbib ? "--filter pandoc-citeproc" : "") }
       --from markdown+autolink_bare_uris
       --template '#{TEX}'
       --csl=#{CSL}
+      #{ ( paperbib ? "--citeproc" : "") }
       -s
       --output='#{outfn}'
       paper.md
 COMMAND
+
 
 print cmd
 cmd2 = 'pandoc '+cmd.split(/\s*\n\s*/).join(" ")

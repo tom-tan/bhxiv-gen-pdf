@@ -28,6 +28,10 @@
     \endorigfigure
 }
 
+\newenvironment{CSLReferences}[2]%
+  {}%
+  {\par}
+
 \usepackage{fixltx2e} % provides \textsubscript
 \usepackage[
   backend=biber,
