@@ -40,17 +40,12 @@ end
 local function add_cito (div)
   local cite_id = div.identifier:match 'ref%-(.*)'
   if cite_id and div.classes:includes 'csl-entry' then
-    return pandoc.walk_block(
-      div,
-      {
-        Span = function (span)
-          if span.classes:includes 'csl-right-inline' then
-            span.content:extend(cito_properties(cite_id))
-            return span
-          end
+    for k, v in ipairs( div.content ) do
+        if k == 1 then
+          v.content:extend(cito_properties(cite_id))
+          return div
         end
-      }
-    )
+    end
   end
 end
 
