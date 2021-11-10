@@ -1,5 +1,5 @@
 ---
-title: 'Logic Programming for the Biomedical Sciences'
+title: 'BioHackrXiv template mpla mpla mpla mpla mpla mpla mpla mpla mpla mpla mpla c wjfc wjknwjek nwjkwen jk'
 title_short: 'Logic Programming for the Biomedical Sciences'
 tags:
   - logic programming
@@ -79,6 +79,8 @@ exceptionally simple, with only three logical operators and one
 interface operator [@reasoned2nd].
 
 ![Logic programming resolver traverses the solution space to find all matches \label{fig}](./logic-programming.png)
+
+![An SVG example](./test.svg)
 
 The introduction of logic programming is particularly relevant in the
 context of multi-model data representations where data can be accessed
