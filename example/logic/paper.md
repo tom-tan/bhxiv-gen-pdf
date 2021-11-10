@@ -93,7 +93,7 @@ representing unknown information.  The logic engine then goes through
 the solution space (all data) to find possible matches (see figure
 \ref{fig}). Much more detail on the rationale and implementations of
 miniKanren and logic programming are well summarized in Byrd's book
-\emph{The Reasoned Schemer, Second Edition} [@uses_method_in:reasoned2nd], PhD thesis
+\emph{The Reasoned Schemer, Second Edition} [@agreesWith:reasoned2nd], PhD thesis
 [@ByrdPhD], and [online](https://www.youtube.com/watch?v=eQL48qYDwp4)
 [talks](https://www.youtube.com/watch?v=o3AHnyEf7IE).
 
@@ -144,7 +144,7 @@ format, supporting SPARQL access---for example,
 SPARQL provides a subset of what logic programming can do.
 However, SPARQL queries lack the property of composability and there is no way to
 reuse modular components across queries.  For example, to execute a
-range query on a genomic region using the FALDO model [@Bolleman2016]
+range query on a genomic region using the FALDO model [@agreesWith:Bolleman2016]
 requires authoring a complex query over many triples. If we then wish
 to reuse parts of that query in a more complex query, we have to
 manually compose them together.
