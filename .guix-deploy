@@ -9,7 +9,7 @@
 echo Test with:
 echo ruby ./bin/gen-pdf --debug ./example/logic Japan2019 
 
-guix environment -C guix --network --ad-hoc texlive ghc-pandoc ghc-citeproc ghc-pandoc-types ruby nss-certs openssl curl git less vim 
+guix environment -C guix --network --ad-hoc texlive ghc-pandoc ghc-citeproc ghc-pandoc-types librsvg ruby nss-certs openssl curl git less vim 
 
 # Test with
 #
