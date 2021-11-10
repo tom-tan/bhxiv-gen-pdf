@@ -17,6 +17,8 @@ If you find any bugs, please propose improvements via PRs. Thanks!
 - pdflatex
 - biblatex
 
+Confirmed versions of the library can be found in [Dokerfile](https://github.com/biohackrxiv/bhxiv-gen-pdf/blob/master/docker/Dockerfile)
+
 # Install
 
 Clone this git repository and install the prerequisites listed above
