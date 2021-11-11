@@ -119,7 +119,7 @@ EVENT =
 # Plug things in that are not on command line
 
 git_url = meta['git_url'] if not git_url and meta.has_key?('git_url')
-raise GenPdfError "git_url is undefined in metadata" if not git_url
+# raise GenPdfError,"git_url is undefined in metadata" if not git_url
 
 JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'
