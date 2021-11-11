@@ -5,7 +5,8 @@
     <title>BioHackrXiv</title>
     <id>http://www.zotero.org/styles/biohackrxiv</id>
     <!-- link href="http://www.zotero.org/styles/biohackrxiv" rel="self"/ -->
-    <link href="/home/egonw/var/Projects/hub/bhxiv-gen-pdf/resources/biohackrxiv/apa-new.csl" rel="independent-parent"/>
+
+    <link href="https://www.zotero.org/styles/apa" rel="independent-parent"/>
     <category citation-format="numeric"/>
     <updated>2021-11-10T12:00:00+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
