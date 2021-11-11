@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" default-locale="en-US">
+  <!-- Generated with https://github.com/citation-style-language/utilities/tree/master/generate_dependent_styles/data/springer -->
+  <info>
+    <title>BioHackrXiv</title>
+    <id>http://www.zotero.org/styles/biohackrxiv</id>
+    <!-- link href="http://www.zotero.org/styles/biohackrxiv" rel="self"/ -->
+    <link href="/home/egonw/var/Projects/hub/bhxiv-gen-pdf/resources/biohackrxiv/apa-new.csl" rel="independent-parent"/>
+    <category citation-format="numeric"/>
+    <updated>2021-11-10T12:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+</style>
