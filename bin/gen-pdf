@@ -115,11 +115,11 @@ EVENT =
   else
     EVENT_TYPE[bioh.to_sym]
   end
-# p EVENT
+
 # Plug things in that are not on command line
 
 git_url = meta['git_url'] if not git_url and meta.has_key?('git_url')
-# raise GenPdfError,"git_url is undefined in metadata" if not git_url
+raise GenPdfError,"git_url is undefined in metadata - provide 'git_url' in the markdown header as a reference to the git repo if you are using a zip file" if not git_url
 
 JOURNAL='biohackrxiv'
 JOURNAL_NAME='BioHackrXiv.org'

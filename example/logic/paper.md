@@ -43,8 +43,8 @@ biohackathon_name: "NBDC/DBCLS BioHackathon"
 biohackathon_url:   "http://2019.biohackathon.org/"
 biohackathon_location: "Fukuoka, Japan, 2019"
 group: Logic programming group
-# URL to project git repo --- should contain paper.md
-git_url: https://github.com/biohackrxiv/bhxiv-gen-pdf
+# URL to project git repo --- should contain the actual paper.md
+xgit_url: https://github.com/biohackrxiv/bhxiv-gen-pdf
 # This is the short authors description that is used at the
 # bottom of the generated paper.
 authors_short: Chris Mungall & Hirokazu Chiba \emph{et al.}
