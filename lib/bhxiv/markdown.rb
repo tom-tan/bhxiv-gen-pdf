@@ -30,7 +30,7 @@ def md_meta_checker(meta)
   raise MarkdownError,"not enough authors (2 minimum)" if meta["authors"].length < 2
   raise MarkdownError,"group field is missing" if not meta["group"]
   raise MarkdownError,"date field is missing" if not meta["date"]
-  raise MarkdownError,"bibliography field is missing" if not meta["cito-bibliography"]
+  raise MarkdownError,"bibliography field is missing" if not meta["cito-bibliography"] and not meta["bibliography"]
   raise MarkdownError,"event field is missing" if not meta["event"]
   raise MarkdownError,"authors_short field is missing" if not meta["authors_short"]
   meta
