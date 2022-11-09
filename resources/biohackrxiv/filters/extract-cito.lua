@@ -41,6 +41,12 @@ local properties_and_aliases = {
     'metadata_document',
     'metadata'
   },
+  citesAsPotentialSolution = {
+    'cites_as_potential_solution',
+    'potentialSolution',
+    'potential_solution',
+    'solution
+  },
   citesAsRecommendedReading = {
     'asRecommendedReading',
     'recommendedReading',
@@ -48,10 +54,41 @@ local properties_and_aliases = {
     'as_recommended_reading',
     'recommended_reading'
   },
+  citesAsRelated = {
+    'cites_as_related',
+    'related',
+  },
+  citesAsSourceDocument = {
+    'cites_as_source_document',
+    'sourceDocument',
+    'source_document'
+  },
+  citesForInformation = {
+    'cites_for_information',
+    'information',
+  },
+  compiles = {
+  }.
+  confirms = {
+  },
+  containsAssertionFrom = {
+  },
+  corrects = {
+  },
+  credits = {
+  },
+  critiques = {
+  },
+  derides = {
+  },
+  describes = {
+  },
   disagreesWith = {
     'disagrees_with',
     'disagree',
     'disagrees'
+  },
+  discusses = {
   },
   disputes = {
   },
@@ -71,18 +108,41 @@ local properties_and_aliases = {
     'quotation',
     'quotation_from'
   },
+  linksTo = {
+    'links_to',
+    'link'
+  },
   obtainsBackgroundFrom = {
     'backgroundFrom',
     'obtains_background_from',
     'background',
     'background_from'
   },
+  obtainsSupportFrom = {
+  },
+  qualifies = {
+  },
+  parodies = {
+  },
   refutes = {
   },
   repliesTo = {
     'replies_to',
   },
+  retracts = {
+  },
+  reviews = {
+  },
+  ridicules = {
+  },
+  speculatesOn = {
+  },
+  supports = {
+  }
   updates = {
+  },
+  usesConclusionsFrom = {
+    'uses_conclusions_from'
   },
   usesDataFrom = {
     'dataFrom',
