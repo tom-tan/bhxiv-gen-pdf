@@ -45,7 +45,7 @@ local properties_and_aliases = {
     'cites_as_potential_solution',
     'potentialSolution',
     'potential_solution',
-    'solution
+    'solution'
   },
   citesAsRecommendedReading = {
     'asRecommendedReading',
@@ -68,7 +68,7 @@ local properties_and_aliases = {
     'information',
   },
   compiles = {
-  }.
+  },
   confirms = {
   },
   containsAssertionFrom = {
@@ -138,7 +138,7 @@ local properties_and_aliases = {
   speculatesOn = {
   },
   supports = {
-  }
+  },
   updates = {
   },
   usesConclusionsFrom = {
