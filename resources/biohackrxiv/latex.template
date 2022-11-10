@@ -19,6 +19,8 @@
 \usepackage{xstring}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{rowcolors}
+\usepackage{tabularx}
 
 \usepackage{float}
 \let\origfigure\figure
