@@ -204,6 +204,8 @@ The following tasks were accomplished as part of the BioHackathon:
 \item Make the provenance model more rich and descriptive
 \end{enumerate}
 
+(note the list is written in embedded LaTeX)
+
 For future work, the group will ensure that the new classes added to
 the model will have appropriate mappings to other schemas and
 ontologies.
@@ -252,5 +254,18 @@ BioLink model, and adding dynamic SPARQL support to miniKanren.
 
 We thank the organizers of the NBDC/DBCLS BioHackathon 2019 for
 travel support for some of the authors.
+
+## Supplemental information
+
+## Tables and figures
+
+Tables can be added in the following way, though alternatives are possible:
+
+| Header 1 | Header 2 |
+| -------- | -------- |
+| item 1 | item 2 |
+| item 3 | item 4 |
+
+Table: Note that table caption is automatically numbered.
 
 ## References
