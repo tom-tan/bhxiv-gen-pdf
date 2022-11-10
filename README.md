@@ -91,3 +91,7 @@ the generator and tests.
 If you are not using Docker or Guix you may need to explicitely add ruby
 
     ruby bin/gen-pdf [dir]
+
+## Run tests
+
+    ruby -I lib test/test_generator.rb
