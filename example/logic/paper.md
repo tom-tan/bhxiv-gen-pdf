@@ -257,6 +257,8 @@ travel support for some of the authors.
 
 ## Supplemental information
 
+We use pandoc flavoured markdown, similar to Rstudio see \url{https://garrettgman.github.io/rmarkdown/authoring_pandoc_markdown.html}.
+
 ## Tables and figures
 
 Tables can be added in the following way, though alternatives are possible:
@@ -267,5 +269,33 @@ Tables can be added in the following way, though alternatives are possible:
 | item 3 | item 4 |
 
 Table: Note that table caption is automatically numbered.
+
+
+| Term                | MB tools/ontologies using this term | Frequency on Biology Stack Exchange | Search Term         |
+|:-------------------:|:-----------------------------------:|:-----------------------------------:|:-------------------:|
+| Part | iGEM | 9065 | part + parts |
+| Component           | SBOL, SBOLDesigner, SBOLCanvas      | 2163                                | component           |
+| Module              | SBOL                                | 311                                 | module              |
+| Device              |                                     | 677                                 | device              |
+| System              |                                     | 16098                               | system              |
+| RBS                 |                                     | 548                                 | rbs                 |
+| Ribosome Entry Site | SO                                  | 8                                   | ribosome entry site |
+
+LaTeX table:
+
+
+
+## Mermaid graphs
+
+This is an example of embedding a graph
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 
 ## References
