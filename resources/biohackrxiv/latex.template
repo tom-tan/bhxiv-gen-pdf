@@ -19,7 +19,7 @@
 \usepackage{xstring}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{rowcolors}
+\usepackage{colortbl}
 \usepackage{tabularx}
 
 \usepackage{float}
