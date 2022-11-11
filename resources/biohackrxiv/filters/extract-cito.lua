@@ -77,6 +77,8 @@ local properties_and_aliases = {
     'background',
     'background_from'
   },
+  providesDataFor = {
+  },
   refutes = {
   },
   repliesTo = {
