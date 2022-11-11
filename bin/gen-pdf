@@ -70,7 +70,7 @@ EVENT_TYPE = {
   "BH22EU": {
     title: "BioHackathon Europe 2022",
     URL:   "https\://www.biohackathon-europe.org//",
-    location: "Paris, France, 2019"
+    location: "Paris, France, 2022"
   },
   "BH21EU": {
     title: "BioHackathon Europe 2021",

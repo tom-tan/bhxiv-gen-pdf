@@ -11,6 +11,7 @@
             urlcolor=[rgb]{0.0, 0.5, 1.0},
             linkcolor=[rgb]{0.0, 0.5, 1.0}}
 \usepackage{caption}
+\usepackage{array}
 \usepackage{tcolorbox}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -18,6 +19,8 @@
 \usepackage{xstring}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{colortbl}
+\usepackage{tabularx}
 
 \usepackage{float}
 \let\origfigure\figure

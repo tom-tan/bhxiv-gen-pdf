@@ -10,7 +10,7 @@ require 'bhxiv/markdown'
 class TestGenerator < MiniTest::Test
   def test_yaml_valid
     yml = md_parser('example/logic/paper.md')
-    assert yml['title'] == "Logic Programming for the Biomedical Sciences"
+    assert_equal yml['title'],"BioHackrXiv template this is an example of a (too) long title mpla mpla mpla mpla mpla mpla mpla mpla mpla mpla mpla c wjfc wjknwjek nwjkwen jk"
   end
 
   def test_gen_1tex

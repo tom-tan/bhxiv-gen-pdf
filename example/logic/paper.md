@@ -204,6 +204,8 @@ The following tasks were accomplished as part of the BioHackathon:
 \item Make the provenance model more rich and descriptive
 \end{enumerate}
 
+(note the list is written in embedded LaTeX)
+
 For future work, the group will ensure that the new classes added to
 the model will have appropriate mappings to other schemas and
 ontologies.
@@ -252,5 +254,56 @@ BioLink model, and adding dynamic SPARQL support to miniKanren.
 
 We thank the organizers of the NBDC/DBCLS BioHackathon 2019 for
 travel support for some of the authors.
+
+## Supplemental information
+
+We use pandoc flavoured markdown, similar to Rstudio see \url{https://garrettgman.github.io/rmarkdown/authoring_pandoc_markdown.html}.
+
+## Tables and figures
+
+Tables can be added in the following way, though alternatives are possible:
+
+| Header 1 | Header 2 |
+| -------- | -------- |
+| item 1 | item 2 |
+| item 3 | item 4 |
+
+Table: Note that table caption is automatically numbered.
+
+
+| Term                | MB tools/ontologies using this term | Frequency on Biology Stack Exchange | Search Term         |
+|:-------------------:|:-----------------------------------:|:-----------------------------------:|:-------------------:|
+| Part | iGEM | 9065 | part + parts |
+| Component           | SBOL, SBOLDesigner, SBOLCanvas      | 2163                                | component           |
+| Module              | SBOL                                | 311                                 | module              |
+| Device              |                                     | 677                                 | device              |
+| System              |                                     | 16098                               | system              |
+| RBS                 |                                     | 548                                 | rbs                 |
+| Ribosome Entry Site | SO                                  | 8                                   | ribosome entry site |
+
+LaTeX table:
+
+
+
+\begin{tabular}{|l|l|}\hline
+Age & Frequency \\ \hline
+18--25  & 15 \\
+26--35  & 33 \\
+36--45  & 22 \\ \hline
+\end{tabular}
+
+## Mermaid graphs
+
+This is an example of embedding a graph
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+Unfortunately it does not work without the mermaid plugin and that requires headless chrome(?!). If you run the command line version of `gen-pdf` it may be possible to get it to work with the right packages. Please tell us if you succeed.
 
 ## References
