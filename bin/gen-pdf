@@ -67,44 +67,54 @@ resources=rootdir + "/resources/biohackrxiv"
 # itself, see metadata.rb
 
 EVENT_TYPE = {
+  "SWAT4HCLS23": {
+    title:    "SWAT4HCLS 2023",
+    URL:      "https\://www.swat4ls.org/workshops/basel2023/",
+    location: "Basel, Switzerland, 2023"
+  },
+  "BH23MENA": {
+    title:    "BioHackathon MENA 2023",
+    URL:      "https\://cbrcconferences.kaust.edu.sa/bio-hackathon-2023",
+    location: "KAUST, Saudi Arabia, 2023"
+  },
   "BH22EU": {
-    title: "BioHackathon Europe 2022",
-    URL:   "https\://www.biohackathon-europe.org//",
+    title:    "BioHackathon Europe 2022",
+    URL:      "https\://www.biohackathon-europe.org/",
     location: "Paris, France, 2022"
   },
   "BH21EU": {
-    title: "BioHackathon Europe 2021",
-    URL:   "https\://www.biohackathon-europe.org//",
+    title:    "BioHackathon Europe 2021",
+    URL:      "https\://www.biohackathon-europe.org/",
     location: "Barcelona, Spain, 2021"
   },
   "BH20EU": {
-    title: "BioHackathon Europe 2020",
-    URL:   "https\://www.biohackathon-europe.org//",
+    title:    "BioHackathon Europe 2020",
+    URL:      "https\://www.biohackathon-europe.org/",
     location: "Virtual conference 2020"
   },
   "BCC2020": {
-    title: "Bioinformatics Community Conference 2020 CollaborationFest (CoFest)",
-    URL:   "https\://bcc2020.github.io/cofest/",
+    title:    "Bioinformatics Community Conference 2020 CollaborationFest (CoFest)",
+    URL:      "https\://bcc2020.github.io/cofest/",
     location: "Virtual conference 2020"
   },
   "Covid2020": {
-    title: "COVID-19 BioHackathon",
-    URL:   "https\://github.com/virtual-biohackathons/covid-19-bh20",
+    title:    "COVID-19 BioHackathon",
+    URL:      "https\://github.com/virtual-biohackathons/covid-19-bh20",
     location: "Virtual conference 2020"
   },
   "France2019": {
-    title: "BioHackathon EUROPE",
-    URL:   "https\://www.biohackathon-europe.org//",
+    title:    "BioHackathon EUROPE",
+    URL:      "https\://www.biohackathon-europe.org//",
     location: "Paris, France, 2019"
   },
   "Japan2019": {
-    title: "NBDC/DBCLS BioHackathon",
-    URL:   "http\://2019.biohackathon.org/",
+    title:    "NBDC/DBCLS BioHackathon",
+    URL:      "http\://2019.biohackathon.org/",
     location: "Fukuoka, Japan, 2019"
   },
   "Japan2018": {
-    title: "NBDC/DBCLS BioHackathon",
-    URL:   "http\://2018.biohackathon.org/",
+    title:    "NBDC/DBCLS BioHackathon",
+    URL:      "http\://2018.biohackathon.org/",
     location: "Matsue, Japan, 2018"
   },
   "Other": nil # reserved. See metadata.rb
