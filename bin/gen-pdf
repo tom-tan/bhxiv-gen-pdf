@@ -67,6 +67,16 @@ resources=rootdir + "/resources/biohackrxiv"
 # itself, see metadata.rb
 
 EVENT_TYPE = {
+  "BLAH8": {
+      title:    "Biomedical Linked Annotation Hackathon 8",
+      URL:      "https\://blah8.linkedannotation.org/",
+      location: "Chiba, Japan, 2024"
+  },
+  "BH23EU": {
+      title:    "BioHackathon Europe 2023",
+      URL:      "https\://www.biohackathon-europe.org/",
+      location: "Barcelona, Spain, 2023"
+  },
   "BH23JP": {
     title:    "DBCLS BioHackathon 2023",
     URL:      "https\://2023.biohackathon.org/",
