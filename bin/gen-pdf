@@ -68,7 +68,7 @@ resources=rootdir + "/resources/biohackrxiv"
 
 EVENT_TYPE = {
   "BH24JP": {
-      title:    "DBCLS BioHackathon 2023",
+      title:    "DBCLS BioHackathon 2024",
       URL:      "https\://www.swat4ls.org/workshops/leiden2024/",
       location: "Fukushima, Japan, 2024"
   },
